@@ -16,5 +16,22 @@ namespace SEPatRanking
         {
             InitializeComponent();
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            // TODO: This line of code loads data into the 'sEPat_TestDataSet.Students' table. You can move, or remove it, as needed.
+            this.studentsTableAdapter.Fill(this.sEPat_TestDataSet.Students);
+
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
