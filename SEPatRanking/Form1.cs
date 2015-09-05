@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.OleDb;
 
 namespace SEPatRanking
 {
@@ -32,6 +33,19 @@ namespace SEPatRanking
         private void label1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void buttonApply_Click(object sender, EventArgs e)
+        {
+            //http://www.w3schools.com/sql/sql_quickref.asp
+            //http://stackoverflow.com/questions/19275557/c-sharp-inserting-data-from-a-form-into-an-access-database
+
+            //https://msdn.microsoft.com/en-us/library/system.data.oledb.oledbdataadapter%28v=vs.110%29.aspx
+
+            OleDbConnection conn = new OleDbConnection(global::SEPatRanking.Properties.Settings.Default.SEPat_TestConnectionString);
+            conn.Open();
+            OleDbCommand cmd = new OleDbCommand("INSERT INTO Students (Last Name, First Name, GPA, Extracurricular Points, Attendace) VALUES (" + textBoxLastName.Text + ", " + textBoxFirstName.Text + ", " + textBoxGPA.Text + ", " + textBoxExtracurricular.Text + ", " + textBoxAttendance.Text + ")", conn);
+            dataGridView1.Refresh();
         }
     }
 }

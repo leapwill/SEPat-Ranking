@@ -30,36 +30,40 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.sEPat_TestDataSet = new SEPatRanking.SEPat_TestDataSet();
-            this.studentsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.studentsTableAdapter = new SEPatRanking.SEPat_TestDataSetTableAdapters.StudentsTableAdapter();
-            this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lastNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.firstNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gPADataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.extracurricularPointsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.attendanceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.studentsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.sEPat_TestDataSet = new SEPatRanking.SEPat_TestDataSet();
+            this.studentsTableAdapter = new SEPatRanking.SEPat_TestDataSetTableAdapters.StudentsTableAdapter();
+            this.textBoxSearchID = new System.Windows.Forms.TextBox();
             this.labelSearchID = new System.Windows.Forms.Label();
             this.buttonApply = new System.Windows.Forms.Button();
             this.labelSearchFirst = new System.Windows.Forms.Label();
             this.labelSearchLast = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBoxSearchFirstName = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.textBoxSearchLastName = new System.Windows.Forms.TextBox();
             this.buttonSearch = new System.Windows.Forms.Button();
-            this.textBox3 = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.labelAddNew = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.labelGPA = new System.Windows.Forms.Label();
+            this.textBoxLastName = new System.Windows.Forms.TextBox();
+            this.textBoxFirstName = new System.Windows.Forms.TextBox();
+            this.textBoxID = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.labelAddNew = new System.Windows.Forms.Label();
+            this.textBoxGPA = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.textBoxExtracurricular = new System.Windows.Forms.TextBox();
+            this.textBoxAttendance = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sEPat_TestDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.studentsBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sEPat_TestDataSet)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -73,7 +77,6 @@
             this.dataGridView1.AutoGenerateColumns = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.iDDataGridViewTextBoxColumn,
             this.lastNameDataGridViewTextBoxColumn,
             this.firstNameDataGridViewTextBoxColumn,
             this.gPADataGridViewTextBoxColumn,
@@ -86,27 +89,6 @@
             this.dataGridView1.Size = new System.Drawing.Size(760, 150);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
-            // 
-            // sEPat_TestDataSet
-            // 
-            this.sEPat_TestDataSet.DataSetName = "SEPat_TestDataSet";
-            this.sEPat_TestDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // studentsBindingSource
-            // 
-            this.studentsBindingSource.DataMember = "Students";
-            this.studentsBindingSource.DataSource = this.sEPat_TestDataSet;
-            // 
-            // studentsTableAdapter
-            // 
-            this.studentsTableAdapter.ClearBeforeFill = true;
-            // 
-            // iDDataGridViewTextBoxColumn
-            // 
-            this.iDDataGridViewTextBoxColumn.DataPropertyName = "ID";
-            this.iDDataGridViewTextBoxColumn.HeaderText = "ID";
-            this.iDDataGridViewTextBoxColumn.Name = "iDDataGridViewTextBoxColumn";
-            this.iDDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // lastNameDataGridViewTextBoxColumn
             // 
@@ -143,13 +125,27 @@
             this.attendanceDataGridViewTextBoxColumn.Name = "attendanceDataGridViewTextBoxColumn";
             this.attendanceDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // textBox1
+            // studentsBindingSource
             // 
-            this.textBox1.Location = new System.Drawing.Point(6, 25);
-            this.textBox1.MaxLength = 6;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(58, 20);
-            this.textBox1.TabIndex = 1;
+            this.studentsBindingSource.DataMember = "Students";
+            this.studentsBindingSource.DataSource = this.sEPat_TestDataSet;
+            // 
+            // sEPat_TestDataSet
+            // 
+            this.sEPat_TestDataSet.DataSetName = "SEPat_TestDataSet";
+            this.sEPat_TestDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // studentsTableAdapter
+            // 
+            this.studentsTableAdapter.ClearBeforeFill = true;
+            // 
+            // textBoxSearchID
+            // 
+            this.textBoxSearchID.Location = new System.Drawing.Point(6, 25);
+            this.textBoxSearchID.MaxLength = 6;
+            this.textBoxSearchID.Name = "textBoxSearchID";
+            this.textBoxSearchID.Size = new System.Drawing.Size(58, 20);
+            this.textBoxSearchID.TabIndex = 1;
             // 
             // labelSearchID
             // 
@@ -169,11 +165,12 @@
             this.buttonApply.TabIndex = 3;
             this.buttonApply.Text = "Apply";
             this.buttonApply.UseVisualStyleBackColor = true;
+            this.buttonApply.Click += new System.EventHandler(this.buttonApply_Click);
             // 
             // labelSearchFirst
             // 
             this.labelSearchFirst.AutoSize = true;
-            this.labelSearchFirst.Location = new System.Drawing.Point(67, 9);
+            this.labelSearchFirst.Location = new System.Drawing.Point(185, 9);
             this.labelSearchFirst.Name = "labelSearchFirst";
             this.labelSearchFirst.Size = new System.Drawing.Size(57, 13);
             this.labelSearchFirst.TabIndex = 4;
@@ -182,34 +179,42 @@
             // labelSearchLast
             // 
             this.labelSearchLast.AutoSize = true;
-            this.labelSearchLast.Location = new System.Drawing.Point(185, 9);
+            this.labelSearchLast.Location = new System.Drawing.Point(67, 9);
             this.labelSearchLast.Name = "labelSearchLast";
             this.labelSearchLast.Size = new System.Drawing.Size(58, 13);
             this.labelSearchLast.TabIndex = 5;
             this.labelSearchLast.Text = "Last Name";
             // 
-            // textBox2
+            // textBoxSearchFirstName
             // 
-            this.textBox2.Location = new System.Drawing.Point(70, 25);
-            this.textBox2.MaxLength = 63;
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(112, 20);
-            this.textBox2.TabIndex = 6;
+            this.textBoxSearchFirstName.Location = new System.Drawing.Point(188, 25);
+            this.textBoxSearchFirstName.MaxLength = 63;
+            this.textBoxSearchFirstName.Name = "textBoxSearchFirstName";
+            this.textBoxSearchFirstName.Size = new System.Drawing.Size(112, 20);
+            this.textBoxSearchFirstName.TabIndex = 6;
             // 
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.textBox3);
+            this.panel1.Controls.Add(this.textBoxSearchLastName);
             this.panel1.Controls.Add(this.buttonSearch);
-            this.panel1.Controls.Add(this.textBox2);
+            this.panel1.Controls.Add(this.textBoxSearchFirstName);
             this.panel1.Controls.Add(this.labelSearchLast);
-            this.panel1.Controls.Add(this.textBox1);
+            this.panel1.Controls.Add(this.textBoxSearchID);
             this.panel1.Controls.Add(this.labelSearchFirst);
             this.panel1.Controls.Add(this.labelSearchID);
             this.panel1.Location = new System.Drawing.Point(12, 12);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(760, 69);
             this.panel1.TabIndex = 7;
+            // 
+            // textBoxSearchLastName
+            // 
+            this.textBoxSearchLastName.Location = new System.Drawing.Point(70, 25);
+            this.textBoxSearchLastName.MaxLength = 63;
+            this.textBoxSearchLastName.Name = "textBoxSearchLastName";
+            this.textBoxSearchLastName.Size = new System.Drawing.Size(112, 20);
+            this.textBoxSearchLastName.TabIndex = 9;
             // 
             // buttonSearch
             // 
@@ -220,22 +225,19 @@
             this.buttonSearch.Text = "Search";
             this.buttonSearch.UseVisualStyleBackColor = true;
             // 
-            // textBox3
-            // 
-            this.textBox3.Location = new System.Drawing.Point(188, 25);
-            this.textBox3.MaxLength = 63;
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(112, 20);
-            this.textBox3.TabIndex = 9;
-            // 
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.label5);
+            this.panel2.Controls.Add(this.textBoxAttendance);
+            this.panel2.Controls.Add(this.textBoxExtracurricular);
+            this.panel2.Controls.Add(this.label1);
+            this.panel2.Controls.Add(this.textBoxGPA);
             this.panel2.Controls.Add(this.labelGPA);
-            this.panel2.Controls.Add(this.textBox4);
+            this.panel2.Controls.Add(this.textBoxLastName);
             this.panel2.Controls.Add(this.buttonApply);
-            this.panel2.Controls.Add(this.textBox5);
-            this.panel2.Controls.Add(this.textBox6);
+            this.panel2.Controls.Add(this.textBoxFirstName);
+            this.panel2.Controls.Add(this.textBoxID);
             this.panel2.Controls.Add(this.label2);
             this.panel2.Controls.Add(this.label4);
             this.panel2.Controls.Add(this.label3);
@@ -243,6 +245,66 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(760, 288);
             this.panel2.TabIndex = 8;
+            // 
+            // labelGPA
+            // 
+            this.labelGPA.AutoSize = true;
+            this.labelGPA.Location = new System.Drawing.Point(306, 6);
+            this.labelGPA.Name = "labelGPA";
+            this.labelGPA.Size = new System.Drawing.Size(29, 13);
+            this.labelGPA.TabIndex = 16;
+            this.labelGPA.Text = "GPA";
+            // 
+            // textBoxLastName
+            // 
+            this.textBoxLastName.Location = new System.Drawing.Point(70, 22);
+            this.textBoxLastName.MaxLength = 63;
+            this.textBoxLastName.Name = "textBoxLastName";
+            this.textBoxLastName.Size = new System.Drawing.Size(112, 20);
+            this.textBoxLastName.TabIndex = 15;
+            // 
+            // textBoxFirstName
+            // 
+            this.textBoxFirstName.Location = new System.Drawing.Point(188, 22);
+            this.textBoxFirstName.MaxLength = 63;
+            this.textBoxFirstName.Name = "textBoxFirstName";
+            this.textBoxFirstName.Size = new System.Drawing.Size(112, 20);
+            this.textBoxFirstName.TabIndex = 14;
+            // 
+            // textBoxID
+            // 
+            this.textBoxID.Location = new System.Drawing.Point(6, 22);
+            this.textBoxID.MaxLength = 6;
+            this.textBoxID.Name = "textBoxID";
+            this.textBoxID.Size = new System.Drawing.Size(58, 20);
+            this.textBoxID.TabIndex = 10;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(67, 6);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(58, 13);
+            this.label2.TabIndex = 13;
+            this.label2.Text = "Last Name";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(3, 6);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(58, 13);
+            this.label4.TabIndex = 11;
+            this.label4.Text = "ID Number";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(188, 6);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(57, 13);
+            this.label3.TabIndex = 12;
+            this.label3.Text = "First Name";
             // 
             // labelAddNew
             // 
@@ -254,65 +316,47 @@
             this.labelAddNew.TabIndex = 4;
             this.labelAddNew.Text = "Add New";
             // 
-            // textBox4
+            // textBoxGPA
             // 
-            this.textBox4.Location = new System.Drawing.Point(188, 22);
-            this.textBox4.MaxLength = 63;
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(112, 20);
-            this.textBox4.TabIndex = 15;
+            this.textBoxGPA.Location = new System.Drawing.Point(306, 22);
+            this.textBoxGPA.MaxLength = 6;
+            this.textBoxGPA.Name = "textBoxGPA";
+            this.textBoxGPA.Size = new System.Drawing.Size(58, 20);
+            this.textBoxGPA.TabIndex = 17;
             // 
-            // textBox5
+            // label1
             // 
-            this.textBox5.Location = new System.Drawing.Point(70, 22);
-            this.textBox5.MaxLength = 63;
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(112, 20);
-            this.textBox5.TabIndex = 14;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(367, 6);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(74, 13);
+            this.label1.TabIndex = 18;
+            this.label1.Text = "Extracurricular";
             // 
-            // label2
+            // textBoxExtracurricular
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(185, 6);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(58, 13);
-            this.label2.TabIndex = 13;
-            this.label2.Text = "Last Name";
+            this.textBoxExtracurricular.Location = new System.Drawing.Point(370, 22);
+            this.textBoxExtracurricular.MaxLength = 6;
+            this.textBoxExtracurricular.Name = "textBoxExtracurricular";
+            this.textBoxExtracurricular.Size = new System.Drawing.Size(71, 20);
+            this.textBoxExtracurricular.TabIndex = 19;
             // 
-            // textBox6
+            // textBoxAttendance
             // 
-            this.textBox6.Location = new System.Drawing.Point(6, 22);
-            this.textBox6.MaxLength = 6;
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(58, 20);
-            this.textBox6.TabIndex = 10;
+            this.textBoxAttendance.Location = new System.Drawing.Point(447, 22);
+            this.textBoxAttendance.MaxLength = 6;
+            this.textBoxAttendance.Name = "textBoxAttendance";
+            this.textBoxAttendance.Size = new System.Drawing.Size(71, 20);
+            this.textBoxAttendance.TabIndex = 20;
             // 
-            // label3
+            // label5
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(67, 6);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(57, 13);
-            this.label3.TabIndex = 12;
-            this.label3.Text = "First Name";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(3, 6);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(58, 13);
-            this.label4.TabIndex = 11;
-            this.label4.Text = "ID Number";
-            // 
-            // labelGPA
-            // 
-            this.labelGPA.AutoSize = true;
-            this.labelGPA.Location = new System.Drawing.Point(306, 6);
-            this.labelGPA.Name = "labelGPA";
-            this.labelGPA.Size = new System.Drawing.Size(29, 13);
-            this.labelGPA.TabIndex = 16;
-            this.labelGPA.Text = "GPA";
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(447, 6);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(62, 13);
+            this.label5.TabIndex = 21;
+            this.label5.Text = "Attendance";
             // 
             // Form1
             // 
@@ -330,8 +374,8 @@
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sEPat_TestDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.studentsBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sEPat_TestDataSet)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
@@ -347,30 +391,34 @@
         private SEPat_TestDataSet sEPat_TestDataSet;
         private System.Windows.Forms.BindingSource studentsBindingSource;
         private SEPat_TestDataSetTableAdapters.StudentsTableAdapter studentsTableAdapter;
-        private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.TextBox textBoxSearchID;
+        private System.Windows.Forms.Label labelSearchID;
+        private System.Windows.Forms.Button buttonApply;
+        private System.Windows.Forms.Label labelSearchFirst;
+        private System.Windows.Forms.Label labelSearchLast;
+        private System.Windows.Forms.TextBox textBoxSearchFirstName;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.TextBox textBoxSearchLastName;
+        private System.Windows.Forms.Button buttonSearch;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label labelAddNew;
+        private System.Windows.Forms.Label labelGPA;
+        private System.Windows.Forms.TextBox textBoxLastName;
+        private System.Windows.Forms.TextBox textBoxFirstName;
+        private System.Windows.Forms.TextBox textBoxID;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DataGridViewTextBoxColumn lastNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn firstNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn gPADataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn extracurricularPointsDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn attendanceDataGridViewTextBoxColumn;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label labelSearchID;
-        private System.Windows.Forms.Button buttonApply;
-        private System.Windows.Forms.Label labelSearchFirst;
-        private System.Windows.Forms.Label labelSearchLast;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.Button buttonSearch;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Label labelAddNew;
-        private System.Windows.Forms.Label labelGPA;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox textBoxAttendance;
+        private System.Windows.Forms.TextBox textBoxExtracurricular;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox textBoxGPA;
     }
 }
 
