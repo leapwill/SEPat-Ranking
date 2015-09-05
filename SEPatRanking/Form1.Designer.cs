@@ -30,9 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.LastName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ExtracurricularPoints = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.buttonApply = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.buttonSearch = new System.Windows.Forms.Button();
@@ -51,16 +48,20 @@
             this.label3 = new System.Windows.Forms.Label();
             this.labelAddNew = new System.Windows.Forms.Label();
             this.buttonViewDB = new System.Windows.Forms.Button();
-            this.gPADataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.attendanceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.studentsBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
-            this.sEPat_TestDataSet = new SEPatRanking.SEPat_TestDataSet();
-            this.studentsTableAdapter = new SEPatRanking.SEPat_TestDataSetTableAdapters.StudentsTableAdapter();
             this.buttonSearchReset = new System.Windows.Forms.Button();
             this.comboBoxSearchSelector = new System.Windows.Forms.ComboBox();
             this.textBoxSearch = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
+            this.studentsBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
+            this.sEPat_TestDataSet = new SEPatRanking.SEPat_TestDataSet();
+            this.studentsTableAdapter = new SEPatRanking.SEPat_TestDataSetTableAdapters.StudentsTableAdapter();
+            this.LastName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IDNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.gPADataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ExtracurricularPoints = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.attendanceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -79,6 +80,7 @@
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.LastName,
             this.FirstName,
+            this.IDNumber,
             this.gPADataGridViewTextBoxColumn,
             this.ExtracurricularPoints,
             this.attendanceDataGridViewTextBoxColumn});
@@ -88,26 +90,6 @@
             this.dataGridView1.Size = new System.Drawing.Size(764, 150);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
-            // 
-            // LastName
-            // 
-            this.LastName.DataPropertyName = "LastName";
-            this.LastName.HeaderText = "LastName";
-            this.LastName.Name = "LastName";
-            this.LastName.ReadOnly = true;
-            // 
-            // FirstName
-            // 
-            this.FirstName.DataPropertyName = "FirstName";
-            this.FirstName.HeaderText = "FirstName";
-            this.FirstName.Name = "FirstName";
-            // 
-            // ExtracurricularPoints
-            // 
-            this.ExtracurricularPoints.DataPropertyName = "ExtracurricularPoints";
-            this.ExtracurricularPoints.HeaderText = "ExtracurricularPoints";
-            this.ExtracurricularPoints.Name = "ExtracurricularPoints";
-            this.ExtracurricularPoints.ReadOnly = true;
             // 
             // buttonApply
             // 
@@ -286,34 +268,6 @@
             this.buttonViewDB.UseVisualStyleBackColor = true;
             this.buttonViewDB.Click += new System.EventHandler(this.buttonViewDB_Click);
             // 
-            // gPADataGridViewTextBoxColumn
-            // 
-            this.gPADataGridViewTextBoxColumn.DataPropertyName = "GPA";
-            this.gPADataGridViewTextBoxColumn.HeaderText = "GPA";
-            this.gPADataGridViewTextBoxColumn.Name = "gPADataGridViewTextBoxColumn";
-            this.gPADataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // attendanceDataGridViewTextBoxColumn
-            // 
-            this.attendanceDataGridViewTextBoxColumn.DataPropertyName = "Attendance";
-            this.attendanceDataGridViewTextBoxColumn.HeaderText = "Attendance";
-            this.attendanceDataGridViewTextBoxColumn.Name = "attendanceDataGridViewTextBoxColumn";
-            this.attendanceDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // studentsBindingSource2
-            // 
-            this.studentsBindingSource2.DataMember = "Students";
-            this.studentsBindingSource2.DataSource = this.sEPat_TestDataSet;
-            // 
-            // sEPat_TestDataSet
-            // 
-            this.sEPat_TestDataSet.DataSetName = "SEPat_TestDataSet";
-            this.sEPat_TestDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // studentsTableAdapter
-            // 
-            this.studentsTableAdapter.ClearBeforeFill = true;
-            // 
             // buttonSearchReset
             // 
             this.buttonSearchReset.Location = new System.Drawing.Point(680, 32);
@@ -340,7 +294,7 @@
             // textBoxSearch
             // 
             this.textBoxSearch.Location = new System.Drawing.Point(133, 24);
-            this.textBoxSearch.MaxLength = 31;
+            this.textBoxSearch.MaxLength = 6;
             this.textBoxSearch.Name = "textBoxSearch";
             this.textBoxSearch.Size = new System.Drawing.Size(100, 20);
             this.textBoxSearch.TabIndex = 12;
@@ -362,6 +316,60 @@
             this.label7.Size = new System.Drawing.Size(35, 13);
             this.label7.TabIndex = 14;
             this.label7.Text = "Query";
+            // 
+            // studentsBindingSource2
+            // 
+            this.studentsBindingSource2.DataMember = "Students";
+            this.studentsBindingSource2.DataSource = this.sEPat_TestDataSet;
+            // 
+            // sEPat_TestDataSet
+            // 
+            this.sEPat_TestDataSet.DataSetName = "SEPat_TestDataSet";
+            this.sEPat_TestDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // studentsTableAdapter
+            // 
+            this.studentsTableAdapter.ClearBeforeFill = true;
+            // 
+            // LastName
+            // 
+            this.LastName.DataPropertyName = "LastName";
+            this.LastName.HeaderText = "LastName";
+            this.LastName.Name = "LastName";
+            this.LastName.ReadOnly = true;
+            // 
+            // FirstName
+            // 
+            this.FirstName.DataPropertyName = "FirstName";
+            this.FirstName.HeaderText = "FirstName";
+            this.FirstName.Name = "FirstName";
+            // 
+            // IDNumber
+            // 
+            this.IDNumber.DataPropertyName = "IDNumber";
+            this.IDNumber.HeaderText = "IDNumber";
+            this.IDNumber.Name = "IDNumber";
+            // 
+            // gPADataGridViewTextBoxColumn
+            // 
+            this.gPADataGridViewTextBoxColumn.DataPropertyName = "GPA";
+            this.gPADataGridViewTextBoxColumn.HeaderText = "GPA";
+            this.gPADataGridViewTextBoxColumn.Name = "gPADataGridViewTextBoxColumn";
+            this.gPADataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // ExtracurricularPoints
+            // 
+            this.ExtracurricularPoints.DataPropertyName = "ExtracurricularPoints";
+            this.ExtracurricularPoints.HeaderText = "ExtracurricularPoints";
+            this.ExtracurricularPoints.Name = "ExtracurricularPoints";
+            this.ExtracurricularPoints.ReadOnly = true;
+            // 
+            // attendanceDataGridViewTextBoxColumn
+            // 
+            this.attendanceDataGridViewTextBoxColumn.DataPropertyName = "Attendance";
+            this.attendanceDataGridViewTextBoxColumn.HeaderText = "Attendance";
+            this.attendanceDataGridViewTextBoxColumn.Name = "attendanceDataGridViewTextBoxColumn";
+            this.attendanceDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // MainActivity
             // 
@@ -416,11 +424,6 @@
         private System.Windows.Forms.TextBox textBoxExtracurricular;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBoxGPA;
-        private System.Windows.Forms.DataGridViewTextBoxColumn LastName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn FirstName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn gPADataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ExtracurricularPoints;
-        private System.Windows.Forms.DataGridViewTextBoxColumn attendanceDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource studentsBindingSource2;
         private System.Windows.Forms.Button buttonViewDB;
         private System.Windows.Forms.Button buttonSearchReset;
@@ -428,6 +431,12 @@
         private System.Windows.Forms.ComboBox comboBoxSearchSelector;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn LastName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn FirstName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IDNumber;
+        private System.Windows.Forms.DataGridViewTextBoxColumn gPADataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ExtracurricularPoints;
+        private System.Windows.Forms.DataGridViewTextBoxColumn attendanceDataGridViewTextBoxColumn;
     }
 }
 

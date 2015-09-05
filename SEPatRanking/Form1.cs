@@ -45,7 +45,7 @@ namespace SEPatRanking
             OleDbConnection conn = new OleDbConnection();//Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\SEPat_Test.accdb
             conn.ConnectionString = SEPatRanking.Properties.Settings.Default.SEPat_TestConnectionString;
             conn.Open();
-            OleDbCommand cmd = new OleDbCommand("INSERT INTO Students (LastName,FirstName,GPA,ExtracurricularPoints,Attendance) VALUES (\'" + textBoxLastName.Text + "\',\'" + textBoxFirstName.Text + "\',\'" + textBoxGPA.Text + "\',\'" + textBoxExtracurricular.Text + "\',\'" + textBoxAttendance.Text + "\');", conn);
+            OleDbCommand cmd = new OleDbCommand("INSERT INTO Students (LastName,FirstName,GPA,ExtracurricularPoints,Attendance,IDNumber) VALUES (\'" + textBoxLastName.Text + "\',\'" + textBoxFirstName.Text + "\',\'" + textBoxGPA.Text + "\',\'" + textBoxExtracurricular.Text + "\',\'" + textBoxAttendance.Text + "\',\'" + textBoxID.Text + "\');", conn);
             //MessageBox.Show(cmd.CommandText.ToString());  //debug by showing SQL command before executing
             try
             {
@@ -63,6 +63,10 @@ namespace SEPatRanking
             }
             catch (OleDbException ex)
             {
+                if(ex.Message.Equals("Data type mismatch in criteria expression."))
+                {
+                    MessageBox.Show("You have entered incorrect data!", "Please make sure all typed data is of the correct type and format.");
+                }
                 MessageBox.Show(ex.Message);
                 conn.Close();
             }
@@ -76,8 +80,12 @@ namespace SEPatRanking
 
         private void buttonSearch_Click(object sender, EventArgs e)
         {
-            studentsBindingSource2.Filter = comboBoxSearchSelector.Text + " LIKE \'*" + textBoxSearch.Text + "*\'";
-            studentsTableAdapter.Fill(sEPat_TestDataSet.Students);
+            if (textBoxSearch.Text != "")
+            {
+                studentsBindingSource2.Filter = comboBoxSearchSelector.Text + " LIKE \'*" + textBoxSearch.Text + "*\'";
+                studentsTableAdapter.Fill(sEPat_TestDataSet.Students);
+            }
+            else { }
         }
 
         private void buttonSearchReset_Click(object sender, EventArgs e)
@@ -89,7 +97,7 @@ namespace SEPatRanking
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            textBoxSearch.Clear();
         }
     }
 }
