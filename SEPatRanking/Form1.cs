@@ -8,14 +8,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.OleDb;
-using System.Data.SqlClient;
-using System.Data.Linq;
 
 namespace SEPatRanking
 {
-    public partial class Form1 : Form
+    public partial class MainActivity : Form
     {
-        public Form1()
+        public MainActivity()
         {
             InitializeComponent();
         }
@@ -56,33 +54,41 @@ namespace SEPatRanking
                 MessageBox.Show("New Student entry added!");
                 //var dataSource = dataGridView1.DataSource;
                 //dataGridView1.DataSource = null;
-                dataGridView1.Update();
+                /*dataGridView1.Update();
                 dataGridView1.Refresh();
-                dataGridView1.Parent.Refresh();
+                dataGridView1.Parent.Refresh();*/
                 //dataGridView1.DataSource = dataSource;
                 conn.Close();
+                studentsTableAdapter.Fill(sEPat_TestDataSet.Students);
             }
             catch (OleDbException ex)
             {
                 MessageBox.Show(ex.Message);
                 conn.Close();
             }
+        }
 
-            /*SqlConnection conn2 = new SqlConnection(@"Data Source=SEPat_Test.accdb");
-            try
-            {
-                conn2.Open();
-                SqlCommand cmd2 = conn2.CreateCommand();
-                cmd2.CommandText = "INSERT INTO Students (Last Name, First Name, GPA, Extracurricular Points, Attendace) VALUES (" + textBoxLastName.Text + ", " + textBoxFirstName.Text + ", " + textBoxGPA.Text + ", " + textBoxExtracurricular.Text + ", " + textBoxAttendance.Text + ")";
-                cmd2.CommandTimeout = 15;
-                cmd2.CommandType = CommandType.Text;
-                cmd2.ExecuteNonQuery();
-                conn2.Close();
-            }
-            catch (SqlException ex)
-            {
-                MessageBox.Show(ex.Message);
-            }*/
+        private void buttonViewDB_Click(object sender, EventArgs e)
+        {
+            ViewDatabaseActivity viewDBAct = new ViewDatabaseActivity();
+            viewDBAct.Show();
+        }
+
+        private void buttonSearch_Click(object sender, EventArgs e)
+        {
+            studentsBindingSource2.Filter = comboBoxSearchSelector.Text + " LIKE \'*" + textBoxSearch.Text + "*\'";
+            studentsTableAdapter.Fill(sEPat_TestDataSet.Students);
+        }
+
+        private void buttonSearchReset_Click(object sender, EventArgs e)
+        {
+            studentsBindingSource2.RemoveFilter();
+            studentsTableAdapter.Fill(sEPat_TestDataSet.Students);
+            textBoxSearch.Clear();
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
         }
     }
