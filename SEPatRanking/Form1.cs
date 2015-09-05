@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.OleDb;
+using System.Data.SqlClient;
+using System.Data.Linq;
 
 namespace SEPatRanking
 {
@@ -42,10 +44,46 @@ namespace SEPatRanking
 
             //https://msdn.microsoft.com/en-us/library/system.data.oledb.oledbdataadapter%28v=vs.110%29.aspx
 
-            OleDbConnection conn = new OleDbConnection(global::SEPatRanking.Properties.Settings.Default.SEPat_TestConnectionString);
+            OleDbConnection conn = new OleDbConnection();//Provider=Microsoft.ACE.OLEDB.12.0;Data Source=|DataDirectory|\SEPat_Test.accdb
+            conn.ConnectionString = SEPatRanking.Properties.Settings.Default.SEPat_TestConnectionString;
             conn.Open();
-            OleDbCommand cmd = new OleDbCommand("INSERT INTO Students (Last Name, First Name, GPA, Extracurricular Points, Attendace) VALUES (" + textBoxLastName.Text + ", " + textBoxFirstName.Text + ", " + textBoxGPA.Text + ", " + textBoxExtracurricular.Text + ", " + textBoxAttendance.Text + ")", conn);
-            dataGridView1.Refresh();
+            OleDbCommand cmd = new OleDbCommand("INSERT INTO Students (LastName,FirstName,GPA,ExtracurricularPoints,Attendance) VALUES (\'" + textBoxLastName.Text + "\',\'" + textBoxFirstName.Text + "\',\'" + textBoxGPA.Text + "\',\'" + textBoxExtracurricular.Text + "\',\'" + textBoxAttendance.Text + "\');", conn);
+            //MessageBox.Show(cmd.CommandText.ToString());  //debug by showing SQL command before executing
+            try
+            {
+                
+                cmd.ExecuteNonQuery();
+                MessageBox.Show("New Student entry added!");
+                //var dataSource = dataGridView1.DataSource;
+                //dataGridView1.DataSource = null;
+                dataGridView1.Update();
+                dataGridView1.Refresh();
+                dataGridView1.Parent.Refresh();
+                //dataGridView1.DataSource = dataSource;
+                conn.Close();
+            }
+            catch (OleDbException ex)
+            {
+                MessageBox.Show(ex.Message);
+                conn.Close();
+            }
+
+            /*SqlConnection conn2 = new SqlConnection(@"Data Source=SEPat_Test.accdb");
+            try
+            {
+                conn2.Open();
+                SqlCommand cmd2 = conn2.CreateCommand();
+                cmd2.CommandText = "INSERT INTO Students (Last Name, First Name, GPA, Extracurricular Points, Attendace) VALUES (" + textBoxLastName.Text + ", " + textBoxFirstName.Text + ", " + textBoxGPA.Text + ", " + textBoxExtracurricular.Text + ", " + textBoxAttendance.Text + ")";
+                cmd2.CommandTimeout = 15;
+                cmd2.CommandType = CommandType.Text;
+                cmd2.ExecuteNonQuery();
+                conn2.Close();
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }*/
+
         }
     }
 }
