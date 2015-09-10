@@ -11,7 +11,7 @@ using System.Data.OleDb;
 
 namespace SEPatRanking
 {
-    public partial class MainActivity : Form
+    public partial class MainActivity : System.Windows.Forms.Form
     {
         public MainActivity()
         {
@@ -22,6 +22,7 @@ namespace SEPatRanking
         {
             // TODO: This line of code loads data into the 'sEPat_TestDataSet.Students' table. You can move, or remove it, as needed.
             this.studentsTableAdapter.Fill(this.sEPat_TestDataSet.Students);
+            this.comboBoxSearchSelector.SelectedItem = "LastName";
 
         }
 
@@ -60,6 +61,12 @@ namespace SEPatRanking
                 //dataGridView1.DataSource = dataSource;
                 conn.Close();
                 studentsTableAdapter.Fill(sEPat_TestDataSet.Students);
+                textBoxLastName.Clear();
+                textBoxFirstName.Clear();
+                textBoxID.Clear();
+                textBoxGPA.Clear();
+                textBoxExtracurricular.Clear();
+                textBoxAttendance.Clear();
             }
             catch (OleDbException ex)
             {
@@ -80,7 +87,7 @@ namespace SEPatRanking
 
         private void buttonSearch_Click(object sender, EventArgs e)
         {
-            if (textBoxSearch.Text != "")
+            if (textBoxSearch.Text != "" && comboBoxSearchSelector.Text != "")
             {
                 studentsBindingSource2.Filter = comboBoxSearchSelector.Text + " LIKE \'*" + textBoxSearch.Text + "*\'";
                 studentsTableAdapter.Fill(sEPat_TestDataSet.Students);
@@ -98,6 +105,13 @@ namespace SEPatRanking
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             textBoxSearch.Clear();
+        }
+
+        private void buttonExtracurricularHelp_Click(object sender, EventArgs e)
+        {
+            ExtracurricularHelpActivity extraHelpAct = new ExtracurricularHelpActivity();
+            extraHelpAct.ShowDialog();
+            textBoxExtracurricular.Text = extraHelpAct.getExtracurricularPoints().ToString();
         }
     }
 }

@@ -409,7 +409,7 @@ namespace SEPatRanking {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public StudentsRow AddStudentsRow(double GPA, int Attendance, string LastName, string FirstName, int ExtracurricularPoints, string IDNumber) {
+            public StudentsRow AddStudentsRow(double GPA, int Attendance, string LastName, string FirstName, int ExtracurricularPoints, int IDNumber) {
                 StudentsRow rowStudentsRow = ((StudentsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         GPA,
@@ -461,7 +461,7 @@ namespace SEPatRanking {
                 base.Columns.Add(this.columnFirstName);
                 this.columnExtracurricularPoints = new global::System.Data.DataColumn("ExtracurricularPoints", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnExtracurricularPoints);
-                this.columnIDNumber = new global::System.Data.DataColumn("IDNumber", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnIDNumber = new global::System.Data.DataColumn("IDNumber", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnIDNumber);
                 this.columnLastName.MaxLength = 255;
                 this.columnFirstName.MaxLength = 255;
@@ -687,10 +687,10 @@ namespace SEPatRanking {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string IDNumber {
+            public int IDNumber {
                 get {
                     try {
-                        return ((string)(this[this.tableStudents.IDNumberColumn]));
+                        return ((int)(this[this.tableStudents.IDNumberColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'IDNumber\' in table \'Students\' is DBNull.", e);
@@ -938,6 +938,7 @@ namespace SEPatRanking.SEPat_TestDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("LastName", "LastName");
             tableMapping.ColumnMappings.Add("FirstName", "FirstName");
             tableMapping.ColumnMappings.Add("ExtracurricularPoints", "ExtracurricularPoints");
+            tableMapping.ColumnMappings.Add("IDNumber", "IDNumber");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.OleDb.OleDbCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
@@ -999,7 +1000,7 @@ namespace SEPatRanking.SEPat_TestDataSetTableAdapters {
             this._commandCollection = new global::System.Data.OleDb.OleDbCommand[1];
             this._commandCollection[0] = new global::System.Data.OleDb.OleDbCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT GPA, Attendance, ExtracurricularPoints, FirstName, LastName FROM Students";
+            this._commandCollection[0].CommandText = "SELECT GPA, Attendance, ExtracurricularPoints, FirstName, LastName, IDNumber FROM Students";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         

@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace SEPatRanking
 {
-    public partial class ViewDatabaseActivity : Form
+    public partial class ViewDatabaseActivity : System.Windows.Forms.Form
     {
         public ViewDatabaseActivity()
         {
