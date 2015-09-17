@@ -17,23 +17,36 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SEPatRanking
 {
-    static class Program
+    public partial class ViewDatabaseActivity : System.Windows.Forms.Form
     {
-        /// <summary>
-        /// The main entry point for the application.
-        /// </summary>
-        [STAThread]
-        static void Main()
+
+        public ViewDatabaseActivity()
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainActivity());
+            InitializeComponent();
+        }
+
+        public ViewDatabaseActivity(string str)
+        {
+            InitializeComponent();
+            studentsBindingSource.Filter = str;
+            studentsTableAdapter.Fill(sEPat_TestDataSet.Students);
+        }
+
+        private void ViewDatabaseActivity_Load(object sender, EventArgs e)
+        {
+            // TODO: This line of code loads data into the 'sEPat_TestDataSet.Students' table. You can move, or remove it, as needed.
+            this.studentsTableAdapter.Fill(this.sEPat_TestDataSet.Students);
+
         }
     }
 }

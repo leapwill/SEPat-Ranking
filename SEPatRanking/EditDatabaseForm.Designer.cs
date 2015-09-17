@@ -30,17 +30,17 @@
         {
             this.components = new System.ComponentModel.Container();
             this.sEPat_TestDataSet = new SEPatRanking.SEPat_TestDataSet();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.studentsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.studentsTableAdapter = new SEPatRanking.SEPat_TestDataSetTableAdapters.StudentsTableAdapter();
+            this.dataGridView = new System.Windows.Forms.DataGridView();
             this.lastNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.firstNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IDNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gPADataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.extracurricularPointsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.attendanceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.studentsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.studentsTableAdapter = new SEPatRanking.SEPat_TestDataSetTableAdapters.StudentsTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.sEPat_TestDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.studentsBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -49,32 +49,23 @@
             this.sEPat_TestDataSet.DataSetName = "SEPat_TestDataSet";
             this.sEPat_TestDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // dataGridView1
+            // dataGridView
             // 
-            this.dataGridView1.AutoGenerateColumns = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridView.AutoGenerateColumns = false;
+            this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.lastNameDataGridViewTextBoxColumn,
             this.firstNameDataGridViewTextBoxColumn,
             this.IDNumber,
             this.gPADataGridViewTextBoxColumn,
             this.extracurricularPointsDataGridViewTextBoxColumn,
             this.attendanceDataGridViewTextBoxColumn});
-            this.dataGridView1.DataSource = this.studentsBindingSource;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 0);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(784, 362);
-            this.dataGridView1.TabIndex = 0;
-            // 
-            // studentsBindingSource
-            // 
-            this.studentsBindingSource.DataMember = "Students";
-            this.studentsBindingSource.DataSource = this.sEPat_TestDataSet;
-            // 
-            // studentsTableAdapter
-            // 
-            this.studentsTableAdapter.ClearBeforeFill = true;
+            this.dataGridView.DataSource = this.studentsBindingSource;
+            this.dataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView.Location = new System.Drawing.Point(0, 0);
+            this.dataGridView.Name = "dataGridView";
+            this.dataGridView.Size = new System.Drawing.Size(784, 362);
+            this.dataGridView.TabIndex = 0;
             // 
             // lastNameDataGridViewTextBoxColumn
             // 
@@ -112,12 +103,21 @@
             this.attendanceDataGridViewTextBoxColumn.HeaderText = "Attendance";
             this.attendanceDataGridViewTextBoxColumn.Name = "attendanceDataGridViewTextBoxColumn";
             // 
+            // studentsBindingSource
+            // 
+            this.studentsBindingSource.DataMember = "Students";
+            this.studentsBindingSource.DataSource = this.sEPat_TestDataSet;
+            // 
+            // studentsTableAdapter
+            // 
+            this.studentsTableAdapter.ClearBeforeFill = true;
+            // 
             // ViewDatabaseActivity
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 362);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dataGridView);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(800, 200);
@@ -125,7 +125,7 @@
             this.Text = "View the Database";
             this.Load += new System.EventHandler(this.ViewDatabaseActivity_Load);
             ((System.ComponentModel.ISupportInitialize)(this.sEPat_TestDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.studentsBindingSource)).EndInit();
             this.ResumeLayout(false);
 
@@ -134,7 +134,7 @@
         #endregion
 
         private SEPat_TestDataSet sEPat_TestDataSet;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dataGridView;
         private System.Windows.Forms.BindingSource studentsBindingSource;
         private SEPat_TestDataSetTableAdapters.StudentsTableAdapter studentsTableAdapter;
         private System.Windows.Forms.DataGridViewTextBoxColumn lastNameDataGridViewTextBoxColumn;
