@@ -39,66 +39,37 @@ namespace SEPatRanking
         {
             this.studentsTableAdapter.Fill(this.sEPat_TestDataSet.Students);
             this.comboBoxSearchSelector.SelectedItem = "LastName";
+            this.comboBoxGrade.SelectedItem = "9";
             this.toolTip1.SetToolTip(this.buttonMultiSelectAttendance, "Ctrl+Click to select then click to +1 attendance");
         }
 
         private void buttonAddStudent_Click(object sender, EventArgs e)
         {
-            //http://www.w3schools.com/sql/sql_quickref.asp
-            //http://stackoverflow.com/questions/19275557/c-sharp-inserting-data-from-a-form-into-an-access-database
-            //https://msdn.microsoft.com/en-us/library/system.data.oledb.oledbdataadapter%28v=vs.110%29.aspx
-
             //WTJTODO: Check if student already exists in DB and edit entry (instead of add) if true
-
-            //start of checkForDupe
-            bool duplicate = false;
-            studentsBindingSource2.RemoveFilter();
-            
-                if (studentsBindingSource2.Contains(textBoxID.Text))
-                {
-                    duplicate = true;
-                }
-                else { }
-            
-
-            OleDbConnection conn = new OleDbConnection();
-            conn.ConnectionString = SEPatRanking.Properties.Settings.Default.SEPat_TestConnectionString;
-            conn.Open();
-            OleDbCommand cmd = new OleDbCommand();
-            cmd.Connection = conn;
-
-            if (duplicate) //edit the currently entered student because it already exists with other information
+            try //attempt to add a new student
             {
-                //"UPDATE Students\nSET "+ column + "\'=" + newValue + "\'\nWHERE IDNumber=\'" + textBoxID.Text + "\';";
-                if (textBoxAttendance.Text != "")
-                {
-                    cmd.CommandText = "UPDATE Students\nSET " + "Attendance" + "\'=" + textBoxAttendance.Text + "\'\nWHERE IDNumber=\'" + textBoxID.Text + "\';";
-                    executeOleDbNonQuery(conn, cmd);
-                }
+                studentsTableAdapter.Insert(double.Parse(textBoxGPA.Text), int.Parse(textBoxAttendance.Text), int.Parse(textBoxExtracurricular.Text), textBoxFirstName.Text, textBoxLastName.Text, textBoxIDNumber.Text);
+                MessageBox.Show("New Student entry added!");
             }
-            else //add a new student (because the ID number doesn't already exist)
+            catch //if it fails because there is a duplicate IDNumber, edit the student instead
             {
-                //this uses an OleDb (SQL interface between C# and Access) but it'd probably be better to put it
-                //in the bindingSource or tableAdapter than directly into the Access file
-                cmd.CommandText = "INSERT INTO Students (LastName,FirstName,GPA,ExtracurricularPoints,Attendance,IDNumber) VALUES (\'" + textBoxLastName.Text + "\',\'" + textBoxFirstName.Text + "\',\'" + textBoxGPA.Text + "\',\'" + textBoxExtracurricular.Text + "\',\'" + textBoxAttendance.Text + "\',\'" + textBoxID.Text + "\');";
-                executeOleDbNonQuery(conn, cmd);
-                //MessageBox.Show(cmd.CommandText.ToString());  //debug by showing SQL command before executing
-                
+                studentsTableAdapter.UpdateQuery(textBoxLastName.Text, textBoxFirstName.Text, decimal.Parse(textBoxGPA.Text), int.Parse(textBoxExtracurricular.Text), int.Parse(textBoxAttendance.Text), textBoxIDNumber.Text);
             }
-
+            this.studentsTableAdapter.Fill(this.sEPat_TestDataSet.Students);
         }
 
-        public void executeOleDbNonQuery(OleDbConnection conn, OleDbCommand cmd)
-        {
+        private void executeOleDbNonQuery(OleDbCommand cmd)
+        { //neec
+            
+            studentsTableAdapter.Connection.Open();
+            cmd.Connection = studentsTableAdapter.Connection;
+            //MessageBox.Show(cmd.CommandText.ToString());  //debug by showing SQL command before executing
             try
             {
                 cmd.ExecuteNonQuery();
-                MessageBox.Show("New Student entry added!");
-                conn.Close();
-                studentsTableAdapter.Fill(sEPat_TestDataSet.Students);
                 textBoxLastName.Clear();
                 textBoxFirstName.Clear();
-                textBoxID.Clear();
+                textBoxIDNumber.Clear();
                 textBoxGPA.Clear();
                 textBoxExtracurricular.Clear();
                 textBoxAttendance.Clear();
@@ -113,19 +84,18 @@ namespace SEPatRanking
                 {
                     MessageBox.Show(ex.Message);
                 }
-                conn.Close();
             }
+            studentsTableAdapter.Connection.Close();
         }
 
         private void buttonViewDB_Click(object sender, EventArgs e)
-        {
+        { //neec
             ViewDatabaseActivity viewDBAct = new ViewDatabaseActivity();
             viewDBAct.ShowDialog();
         }
 
         private void buttonSearch_Click(object sender, EventArgs e)
-        {
-            //WTJTODO: search on Enter key
+        { //neec
             if (textBoxSearch.Text != "" && comboBoxSearchSelector.Text != "")
             {
                 studentsBindingSource2.Filter = comboBoxSearchSelector.Text + " like \'*" + textBoxSearch.Text + "*\'";
@@ -135,14 +105,14 @@ namespace SEPatRanking
         }
 
         private void buttonSearchReset_Click(object sender, EventArgs e)
-        {
+        { //neec
             studentsBindingSource2.RemoveFilter();
             studentsTableAdapter.Fill(sEPat_TestDataSet.Students);
             textBoxSearch.Clear();
         }
 
         private void buttonSearchNewWindow_Click(object sender, EventArgs e)
-        {
+        { //neec
             if (textBoxSearch.Text != "" && comboBoxSearchSelector.Text != "")
             {
                 string filter = comboBoxSearchSelector.Text + " like \'*" + textBoxSearch.Text + "*\'";
@@ -153,25 +123,25 @@ namespace SEPatRanking
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
+        { //clear the Search text box when the dropdown selector changes category for convenience
             textBoxSearch.Clear();
         }
 
         private void buttonExtracurricularHelp_Click(object sender, EventArgs e)
-        {
+        { //opens ExtraCurricularCounterForm to aid the user through properly counting all the extracurriculars
             ExtracurricularHelpActivity extraHelpAct = new ExtracurricularHelpActivity();
             extraHelpAct.ShowDialog();
             textBoxExtracurricular.Text = extraHelpAct.getExtracurricularPoints().ToString();
         }
 
         private void buttonAbout_Click(object sender, EventArgs e)
-        {
+        { //shows the AboutBox for version, author, and license information
             AboutBox about = new AboutBox();
             about.ShowDialog();
         }
 
         private void buttonAttendancePlusOne_Click(object sender, EventArgs e)
-        {
+        { //simple increments the Attendance text box value by one
             if (textBoxAttendance.Text != "")
             {
                 textBoxAttendance.Text = (Int32.Parse(textBoxAttendance.Text) + 1).ToString();
@@ -180,15 +150,12 @@ namespace SEPatRanking
         }
 
         private void dataGridView1_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
-        {
-            //http://stackoverflow.com/questions/11260843/getting-data-from-selected-datagridview-row-and-which-event
-            //http://stackoverflow.com/questions/5746319/get-cell-contents-of-a-selected-row-in-a-datagridview
-
+        { //when a cell is double-clicked, fill the text boxes with that student's information so it may be edited
             if(dataGridView1.SelectedRows.Count == 1)
             {
                 textBoxLastName.Text = dataGridView1.SelectedRows[0].Cells[0].Value.ToString();
                 textBoxFirstName.Text = dataGridView1.SelectedRows[0].Cells[1].Value.ToString();
-                textBoxID.Text = dataGridView1.SelectedRows[0].Cells[2].Value.ToString();
+                textBoxIDNumber.Text = dataGridView1.SelectedRows[0].Cells[2].Value.ToString();
                 textBoxGPA.Text = dataGridView1.SelectedRows[0].Cells[3].Value.ToString();
                 textBoxExtracurricular.Text = dataGridView1.SelectedRows[0].Cells[4].Value.ToString();
                 textBoxAttendance.Text = Text = dataGridView1.SelectedRows[0].Cells[5].Value.ToString();
@@ -206,12 +173,26 @@ namespace SEPatRanking
         }
 
         private void buttonMultiSelectAttendance_Click(object sender, EventArgs e)
-        {
-            //WTJTODO: 
-            for(int i = 0; i < dataGridView1.SelectedRows.Count; i++)
+        { //go through all selected rows (Ctrl+Click) and get the unique IDNumber to add 1 to the Attendance value
+            for(int i = 0; i < dataGridView1.SelectedRows.Count; i += 1)
             {
-                dataGridView1.SelectedRows[i].Cells["Attendance"].Value = Int32.Parse(dataGridView1.SelectedRows[i].Cells["Attendance"].Value.ToString()) += 1;
-            }
+                string idToChange = dataGridView1.SelectedRows[i].Cells["IDNumber"].Value.ToString();
+                OleDbCommand cmd = new OleDbCommand();
+                cmd.CommandText = "UPDATE Students SET Attendance=" + (int.Parse(dataGridView1.SelectedRows[i].Cells[5].Value.ToString()) + 1) + " WHERE IDNumber=\'" + idToChange + "\';";
+                executeOleDbNonQuery(cmd);          }
+                this.studentsTableAdapter.Fill(this.sEPat_TestDataSet.Students);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            //WTJTODO: use a tableAdapter to interact with the DataSet
+            //http://stackoverflow.com/questions/32642697/c-sharp-use-auto-generated-oledbconnection-in-other-files
+            OleDbCommand testcmd = new OleDbCommand("UPDATE Students SET Attendance=30 WHERE IDNumber=\'123456\';",studentsTableAdapter.Connection);
+            studentsTableAdapter.Connection.Open();
+            testcmd.ExecuteNonQuery();
+            studentsTableAdapter.Connection.Close();
+
+            studentsTableAdapter.UpdateQueryAttendance(30, "123456");
         }
     }
 }

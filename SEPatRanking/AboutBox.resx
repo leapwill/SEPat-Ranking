@@ -117,4 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="textBoxDescription.Text" xml:space="preserve">
+    <value>Description
+
+Created by Will Johnson, Pathway President 2015-2016.
+
+Released under GNU GPL lisence available at http://www.gnu.org/licenses/
+Available on Github at https://www.github.com/leapwill/SEPat-Ranking</value>
+  </data>
 </root>
