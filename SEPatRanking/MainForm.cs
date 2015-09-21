@@ -59,7 +59,7 @@ namespace SEPatRanking
         }
 
         private void executeOleDbNonQuery(OleDbCommand cmd)
-        { //neec
+        { //Executes a NonQuery with specified command //neec
             
             studentsTableAdapter.Connection.Open();
             cmd.Connection = studentsTableAdapter.Connection;
@@ -89,13 +89,13 @@ namespace SEPatRanking
         }
 
         private void buttonViewDB_Click(object sender, EventArgs e)
-        { //neec
+        { //Opens a new window with only a dataGridView, but this one can be double clicked to edit
             ViewDatabaseActivity viewDBAct = new ViewDatabaseActivity();
             viewDBAct.ShowDialog();
         }
 
         private void buttonSearch_Click(object sender, EventArgs e)
-        { //neec
+        { //limits entries shown in dataGridView to only those that fit the search parameters in the given column
             if (textBoxSearch.Text != "" && comboBoxSearchSelector.Text != "")
             {
                 studentsBindingSource2.Filter = comboBoxSearchSelector.Text + " like \'*" + textBoxSearch.Text + "*\'";
@@ -105,14 +105,14 @@ namespace SEPatRanking
         }
 
         private void buttonSearchReset_Click(object sender, EventArgs e)
-        { //neec
+        { //empties search box and refills dataGridView
             studentsBindingSource2.RemoveFilter();
             studentsTableAdapter.Fill(sEPat_TestDataSet.Students);
             textBoxSearch.Clear();
         }
 
         private void buttonSearchNewWindow_Click(object sender, EventArgs e)
-        { //neec
+        { //opens new window (editable dataGridView) with a filter
             if (textBoxSearch.Text != "" && comboBoxSearchSelector.Text != "")
             {
                 string filter = comboBoxSearchSelector.Text + " like \'*" + textBoxSearch.Text + "*\'";
