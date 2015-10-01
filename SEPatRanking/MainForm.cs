@@ -28,9 +28,9 @@ using System.Data.OleDb;
 
 namespace SEPatRanking
 {
-    public partial class MainActivity : System.Windows.Forms.Form
+    public partial class MainForm : System.Windows.Forms.Form
     {
-        public MainActivity()
+        public MainForm()
         {
             InitializeComponent();
         }
@@ -38,28 +38,36 @@ namespace SEPatRanking
         private void Form1_Load(object sender, EventArgs e)
         {
             this.studentsTableAdapter.Fill(this.sEPat_TestDataSet.Students);
+            dataGridView1.Sort(dataGridView1.Columns["Score"], ListSortDirection.Descending);
             this.comboBoxSearchSelector.SelectedItem = "LastName";
             this.comboBoxGrade.SelectedItem = "9";
             this.toolTip1.SetToolTip(this.buttonMultiSelectAttendance, "Ctrl+Click to select then click to +1 attendance");
+            this.toolTip1.SetToolTip(this.labelGPA, "Weighted");
         }
 
         private void buttonAddStudent_Click(object sender, EventArgs e)
         {
-            //WTJTODO: Check if student already exists in DB and edit entry (instead of add) if true
+            //CURRENT SCORING IS TEMPORARY
             try //attempt to add a new student
             {
-                studentsTableAdapter.Insert(double.Parse(textBoxGPA.Text), int.Parse(textBoxAttendance.Text), int.Parse(textBoxExtracurricular.Text), textBoxFirstName.Text, textBoxLastName.Text, textBoxIDNumber.Text);
+                decimal score = decimal.Parse(textBoxGPA.Text) + int.Parse(textBoxAttendance.Text) + int.Parse(textBoxExtracurricular.Text);
+                studentsTableAdapter.Insert(double.Parse(textBoxGPA.Text), int.Parse(textBoxAttendance.Text), int.Parse(textBoxExtracurricular.Text), textBoxFirstName.Text, textBoxLastName.Text, textBoxIDNumber.Text, comboBoxGrade.Text, score);
                 MessageBox.Show("New Student entry added!");
+            }
+            catch (FormatException ex) //if it fails because of invalid data in a field (eg letters in Attendance)
+            {
+                MessageBox.Show("You have entered the wrong type of data, try again!");
             }
             catch //if it fails because there is a duplicate IDNumber, edit the student instead
             {
-                studentsTableAdapter.UpdateQuery(textBoxLastName.Text, textBoxFirstName.Text, decimal.Parse(textBoxGPA.Text), int.Parse(textBoxExtracurricular.Text), int.Parse(textBoxAttendance.Text), textBoxIDNumber.Text);
+                decimal score = decimal.Parse(textBoxGPA.Text) + int.Parse(textBoxAttendance.Text) + int.Parse(textBoxExtracurricular.Text);
+                studentsTableAdapter.UpdateQuery(textBoxLastName.Text, textBoxFirstName.Text, decimal.Parse(textBoxGPA.Text), short.Parse(textBoxExtracurricular.Text), short.Parse(textBoxAttendance.Text), comboBoxGrade.Text, score, textBoxIDNumber.Text);
             }
             this.studentsTableAdapter.Fill(this.sEPat_TestDataSet.Students);
         }
 
         private void executeOleDbNonQuery(OleDbCommand cmd)
-        { //Executes a NonQuery with specified command //neec
+        { //Executes a NonQuery with specified command
             
             studentsTableAdapter.Connection.Open();
             cmd.Connection = studentsTableAdapter.Connection;
@@ -153,12 +161,13 @@ namespace SEPatRanking
         { //when a cell is double-clicked, fill the text boxes with that student's information so it may be edited
             if(dataGridView1.SelectedRows.Count == 1)
             {
-                textBoxLastName.Text = dataGridView1.SelectedRows[0].Cells[0].Value.ToString();
-                textBoxFirstName.Text = dataGridView1.SelectedRows[0].Cells[1].Value.ToString();
-                textBoxIDNumber.Text = dataGridView1.SelectedRows[0].Cells[2].Value.ToString();
-                textBoxGPA.Text = dataGridView1.SelectedRows[0].Cells[3].Value.ToString();
-                textBoxExtracurricular.Text = dataGridView1.SelectedRows[0].Cells[4].Value.ToString();
-                textBoxAttendance.Text = Text = dataGridView1.SelectedRows[0].Cells[5].Value.ToString();
+                textBoxLastName.Text = dataGridView1.SelectedRows[0].Cells["LastName"].Value.ToString();
+                textBoxFirstName.Text = dataGridView1.SelectedRows[0].Cells["FirstName"].Value.ToString();
+                textBoxIDNumber.Text = dataGridView1.SelectedRows[0].Cells["IDNumber"].Value.ToString();
+                textBoxGPA.Text = dataGridView1.SelectedRows[0].Cells["GPA"].Value.ToString();
+                textBoxAttendance.Text = dataGridView1.SelectedRows[0].Cells["Attendance"].Value.ToString();
+                textBoxExtracurricular.Text = dataGridView1.SelectedRows[0].Cells["ExtracurricularPoints"].Value.ToString();
+                comboBoxGrade.SelectedItem = dataGridView1.SelectedRows[0].Cells["Grade"].Value.ToString();
             }
             else { }
         }
@@ -183,16 +192,16 @@ namespace SEPatRanking
                 this.studentsTableAdapter.Fill(this.sEPat_TestDataSet.Students);
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void buttonCalculateScores_Click(object sender, EventArgs e)
         {
-            //WTJTODO: use a tableAdapter to interact with the DataSet
-            //http://stackoverflow.com/questions/32642697/c-sharp-use-auto-generated-oledbconnection-in-other-files
-            OleDbCommand testcmd = new OleDbCommand("UPDATE Students SET Attendance=30 WHERE IDNumber=\'123456\';",studentsTableAdapter.Connection);
-            studentsTableAdapter.Connection.Open();
-            testcmd.ExecuteNonQuery();
-            studentsTableAdapter.Connection.Close();
+            //WTJTODO: find percentiles for each scoring column
 
-            studentsTableAdapter.UpdateQueryAttendance(30, "123456");
+            //WTJTODO: for each student, use defined percentiles to calc and store scores
+            //http://www.wikiwand.com/en/Percentile
+            for (int i = 0; i < int.Parse(sEPat_TestDataSet.Students.Rows.ToString()); i++)
+            {
+                
+            }
         }
     }
 }

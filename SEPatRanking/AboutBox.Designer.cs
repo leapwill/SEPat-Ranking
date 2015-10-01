@@ -35,6 +35,7 @@
             this.labelCopyright = new System.Windows.Forms.Label();
             this.textBoxDescription = new System.Windows.Forms.TextBox();
             this.okButton = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.tableLayoutPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).BeginInit();
             this.SuspendLayout();
@@ -50,6 +51,7 @@
             this.tableLayoutPanel.Controls.Add(this.labelCopyright, 0, 2);
             this.tableLayoutPanel.Controls.Add(this.textBoxDescription, 1, 4);
             this.tableLayoutPanel.Controls.Add(this.okButton, 1, 5);
+            this.tableLayoutPanel.Controls.Add(this.button1, 0, 5);
             this.tableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel.Location = new System.Drawing.Point(9, 9);
             this.tableLayoutPanel.Name = "tableLayoutPanel";
@@ -72,7 +74,6 @@
             this.logoPictureBox.Image = global::SEPatRanking.Properties.Resources.Untitled;
             this.logoPictureBox.Location = new System.Drawing.Point(3, 107);
             this.logoPictureBox.Name = "logoPictureBox";
-            this.tableLayoutPanel.SetRowSpan(this.logoPictureBox, 2);
             this.logoPictureBox.Size = new System.Drawing.Size(131, 126);
             this.logoPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.logoPictureBox.TabIndex = 12;
@@ -140,6 +141,16 @@
             this.okButton.TabIndex = 24;
             this.okButton.Text = "&OK";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(3, 239);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 25;
+            this.button1.Text = "Help";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // AboutBox
             // 
             this.AcceptButton = this.okButton;
@@ -172,5 +183,6 @@
         private System.Windows.Forms.Label labelCopyright;
         private System.Windows.Forms.TextBox textBoxDescription;
         private System.Windows.Forms.Button okButton;
+        private System.Windows.Forms.Button button1;
     }
 }

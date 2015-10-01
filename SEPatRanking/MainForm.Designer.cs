@@ -1,6 +1,6 @@
 ﻿namespace SEPatRanking
 {
-    partial class MainActivity
+    partial class MainForm
     {
         /// <summary>
         /// Required designer variable.
@@ -29,12 +29,19 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainActivity));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.Score = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.LastName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IDNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Grade = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ServiceHours = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.GPA = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ExtracurricularPoints = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Attendance = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.studentsBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
+            this.sEPat_TestDataSet = new SEPatRanking.SEPat_TestDataSet();
             this.buttonApply = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.buttonSearchNewWindow = new System.Windows.Forms.Button();
@@ -45,6 +52,8 @@
             this.buttonSearchReset = new System.Windows.Forms.Button();
             this.buttonSearch = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.comboBoxGrade = new System.Windows.Forms.ComboBox();
+            this.labelGrade = new System.Windows.Forms.Label();
             this.buttonAttendancePlusOne = new System.Windows.Forms.Button();
             this.buttonExtracurricularHelp = new System.Windows.Forms.Button();
             this.textBoxLastName = new System.Windows.Forms.TextBox();
@@ -62,21 +71,15 @@
             this.labelAddNew = new System.Windows.Forms.Label();
             this.buttonEditDB = new System.Windows.Forms.Button();
             this.buttonAbout = new System.Windows.Forms.Button();
-            this.buttonMultiSelectAttendance = new System.Windows.Forms.Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.button1 = new System.Windows.Forms.Button();
-            this.labelGrade = new System.Windows.Forms.Label();
-            this.comboBoxGrade = new System.Windows.Forms.ComboBox();
-            this.gPADataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.attendanceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.studentsBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
-            this.sEPat_TestDataSet = new SEPatRanking.SEPat_TestDataSet();
+            this.buttonMultiSelectAttendance = new System.Windows.Forms.Button();
             this.studentsTableAdapter = new SEPatRanking.SEPat_TestDataSetTableAdapters.StudentsTableAdapter();
+            this.buttonCalculateScores = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.studentsBindingSource2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sEPat_TestDataSet)).BeginInit();
+            this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -88,12 +91,15 @@
             this.dataGridView1.AutoGenerateColumns = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Score,
             this.LastName,
             this.FirstName,
             this.IDNumber,
-            this.gPADataGridViewTextBoxColumn,
+            this.Grade,
+            this.ServiceHours,
+            this.GPA,
             this.ExtracurricularPoints,
-            this.attendanceDataGridViewTextBoxColumn});
+            this.Attendance});
             this.dataGridView1.DataSource = this.studentsBindingSource2;
             this.dataGridView1.Location = new System.Drawing.Point(8, 288);
             this.dataGridView1.Name = "dataGridView1";
@@ -103,6 +109,14 @@
             this.dataGridView1.Size = new System.Drawing.Size(764, 262);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_CellMouseDoubleClick);
+            // 
+            // Score
+            // 
+            this.Score.DataPropertyName = "Score";
+            this.Score.HeaderText = "Score";
+            this.Score.Name = "Score";
+            this.Score.ReadOnly = true;
+            this.Score.Width = 45;
             // 
             // LastName
             // 
@@ -124,6 +138,30 @@
             this.IDNumber.HeaderText = "IDNumber";
             this.IDNumber.Name = "IDNumber";
             this.IDNumber.ReadOnly = true;
+            this.IDNumber.Width = 60;
+            // 
+            // Grade
+            // 
+            this.Grade.DataPropertyName = "Grade";
+            this.Grade.HeaderText = "Grade";
+            this.Grade.Name = "Grade";
+            this.Grade.ReadOnly = true;
+            this.Grade.Width = 40;
+            // 
+            // ServiceHours
+            // 
+            this.ServiceHours.DataPropertyName = "ServiceHours";
+            this.ServiceHours.HeaderText = "ServiceHours";
+            this.ServiceHours.Name = "ServiceHours";
+            this.ServiceHours.ReadOnly = true;
+            // 
+            // GPA
+            // 
+            this.GPA.DataPropertyName = "GPA";
+            this.GPA.HeaderText = "GPA";
+            this.GPA.Name = "GPA";
+            this.GPA.ReadOnly = true;
+            this.GPA.Width = 60;
             // 
             // ExtracurricularPoints
             // 
@@ -131,6 +169,24 @@
             this.ExtracurricularPoints.HeaderText = "ExtracurricularPoints";
             this.ExtracurricularPoints.Name = "ExtracurricularPoints";
             this.ExtracurricularPoints.ReadOnly = true;
+            // 
+            // Attendance
+            // 
+            this.Attendance.DataPropertyName = "Attendance";
+            this.Attendance.HeaderText = "Attendance";
+            this.Attendance.Name = "Attendance";
+            this.Attendance.ReadOnly = true;
+            this.Attendance.Width = 65;
+            // 
+            // studentsBindingSource2
+            // 
+            this.studentsBindingSource2.DataMember = "Students";
+            this.studentsBindingSource2.DataSource = this.sEPat_TestDataSet;
+            // 
+            // sEPat_TestDataSet
+            // 
+            this.sEPat_TestDataSet.DataSetName = "SEPat_TestDataSet";
+            this.sEPat_TestDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // buttonApply
             // 
@@ -253,6 +309,29 @@
             this.panel2.Size = new System.Drawing.Size(760, 147);
             this.panel2.TabIndex = 0;
             // 
+            // comboBoxGrade
+            // 
+            this.comboBoxGrade.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxGrade.FormattingEnabled = true;
+            this.comboBoxGrade.Items.AddRange(new object[] {
+            "9",
+            "10",
+            "11",
+            "12"});
+            this.comboBoxGrade.Location = new System.Drawing.Point(307, 16);
+            this.comboBoxGrade.Name = "comboBoxGrade";
+            this.comboBoxGrade.Size = new System.Drawing.Size(35, 21);
+            this.comboBoxGrade.TabIndex = 16;
+            // 
+            // labelGrade
+            // 
+            this.labelGrade.AutoSize = true;
+            this.labelGrade.Location = new System.Drawing.Point(306, 0);
+            this.labelGrade.Name = "labelGrade";
+            this.labelGrade.Size = new System.Drawing.Size(36, 13);
+            this.labelGrade.TabIndex = 15;
+            this.labelGrade.Text = "Grade";
+            // 
             // buttonAttendancePlusOne
             // 
             this.buttonAttendancePlusOne.Location = new System.Drawing.Point(147, 52);
@@ -302,7 +381,7 @@
             // textBoxExtracurricular
             // 
             this.textBoxExtracurricular.Location = new System.Drawing.Point(6, 94);
-            this.textBoxExtracurricular.MaxLength = 6;
+            this.textBoxExtracurricular.MaxLength = 2;
             this.textBoxExtracurricular.Name = "textBoxExtracurricular";
             this.textBoxExtracurricular.Size = new System.Drawing.Size(71, 20);
             this.textBoxExtracurricular.TabIndex = 10;
@@ -416,73 +495,26 @@
             this.buttonMultiSelectAttendance.UseVisualStyleBackColor = true;
             this.buttonMultiSelectAttendance.Click += new System.EventHandler(this.buttonMultiSelectAttendance_Click);
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(94, 259);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 16;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // labelGrade
-            // 
-            this.labelGrade.AutoSize = true;
-            this.labelGrade.Location = new System.Drawing.Point(306, 0);
-            this.labelGrade.Name = "labelGrade";
-            this.labelGrade.Size = new System.Drawing.Size(36, 13);
-            this.labelGrade.TabIndex = 15;
-            this.labelGrade.Text = "Grade";
-            // 
-            // comboBoxGrade
-            // 
-            this.comboBoxGrade.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxGrade.FormattingEnabled = true;
-            this.comboBoxGrade.Items.AddRange(new object[] {
-            "9",
-            "10",
-            "11",
-            "12"});
-            this.comboBoxGrade.Location = new System.Drawing.Point(307, 16);
-            this.comboBoxGrade.Name = "comboBoxGrade";
-            this.comboBoxGrade.Size = new System.Drawing.Size(35, 21);
-            this.comboBoxGrade.TabIndex = 16;
-            // 
-            // gPADataGridViewTextBoxColumn
-            // 
-            this.gPADataGridViewTextBoxColumn.DataPropertyName = "GPA";
-            this.gPADataGridViewTextBoxColumn.HeaderText = "GPA";
-            this.gPADataGridViewTextBoxColumn.Name = "gPADataGridViewTextBoxColumn";
-            this.gPADataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // attendanceDataGridViewTextBoxColumn
-            // 
-            this.attendanceDataGridViewTextBoxColumn.DataPropertyName = "Attendance";
-            this.attendanceDataGridViewTextBoxColumn.HeaderText = "Attendance";
-            this.attendanceDataGridViewTextBoxColumn.Name = "attendanceDataGridViewTextBoxColumn";
-            this.attendanceDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // studentsBindingSource2
-            // 
-            this.studentsBindingSource2.DataMember = "Students";
-            this.studentsBindingSource2.DataSource = this.sEPat_TestDataSet;
-            // 
-            // sEPat_TestDataSet
-            // 
-            this.sEPat_TestDataSet.DataSetName = "SEPat_TestDataSet";
-            this.sEPat_TestDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
             // studentsTableAdapter
             // 
             this.studentsTableAdapter.ClearBeforeFill = true;
             // 
-            // MainActivity
+            // buttonCalculateScores
+            // 
+            this.buttonCalculateScores.Location = new System.Drawing.Point(94, 259);
+            this.buttonCalculateScores.Name = "buttonCalculateScores";
+            this.buttonCalculateScores.Size = new System.Drawing.Size(97, 23);
+            this.buttonCalculateScores.TabIndex = 16;
+            this.buttonCalculateScores.Text = "Calculate Scores";
+            this.buttonCalculateScores.UseVisualStyleBackColor = true;
+            this.buttonCalculateScores.Click += new System.EventHandler(this.buttonCalculateScores_Click);
+            // 
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 562);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.buttonCalculateScores);
             this.Controls.Add(this.buttonMultiSelectAttendance);
             this.Controls.Add(this.buttonAbout);
             this.Controls.Add(this.buttonEditDB);
@@ -494,16 +526,16 @@
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(800, 600);
             this.MinimumSize = new System.Drawing.Size(800, 600);
-            this.Name = "MainActivity";
+            this.Name = "MainForm";
             this.Text = "Science and Engineering Pathway Student Database";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.studentsBindingSource2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sEPat_TestDataSet)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.studentsBindingSource2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sEPat_TestDataSet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -545,17 +577,20 @@
         private System.Windows.Forms.Button buttonAbout;
         private System.Windows.Forms.Button buttonAttendancePlusOne;
         private System.Windows.Forms.Button buttonSearchNewWindow;
-        private System.Windows.Forms.Button buttonMultiSelectAttendance;
         private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.ComboBox comboBoxGrade;
+        private System.Windows.Forms.Label labelGrade;
+        private System.Windows.Forms.Button buttonMultiSelectAttendance;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Score;
         private System.Windows.Forms.DataGridViewTextBoxColumn LastName;
         private System.Windows.Forms.DataGridViewTextBoxColumn FirstName;
         private System.Windows.Forms.DataGridViewTextBoxColumn IDNumber;
-        private System.Windows.Forms.DataGridViewTextBoxColumn gPADataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Grade;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ServiceHours;
+        private System.Windows.Forms.DataGridViewTextBoxColumn GPA;
         private System.Windows.Forms.DataGridViewTextBoxColumn ExtracurricularPoints;
-        private System.Windows.Forms.DataGridViewTextBoxColumn attendanceDataGridViewTextBoxColumn;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.ComboBox comboBoxGrade;
-        private System.Windows.Forms.Label labelGrade;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Attendance;
+        private System.Windows.Forms.Button buttonCalculateScores;
     }
 }
 

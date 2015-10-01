@@ -293,6 +293,10 @@ namespace SEPatRanking {
             
             private global::System.Data.DataColumn columnGrade;
             
+            private global::System.Data.DataColumn columnScore;
+            
+            private global::System.Data.DataColumn columnServiceHours;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public StudentsDataTable() {
@@ -384,6 +388,22 @@ namespace SEPatRanking {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn ScoreColumn {
+                get {
+                    return this.columnScore;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn ServiceHoursColumn {
+                get {
+                    return this.columnServiceHours;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -419,7 +439,7 @@ namespace SEPatRanking {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public StudentsRow AddStudentsRow(double GPA, int Attendance, string LastName, string FirstName, int ExtracurricularPoints, string IDNumber, string Grade) {
+            public StudentsRow AddStudentsRow(double GPA, int Attendance, string LastName, string FirstName, int ExtracurricularPoints, string IDNumber, string Grade, double Score, int ServiceHours) {
                 StudentsRow rowStudentsRow = ((StudentsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         GPA,
@@ -428,7 +448,9 @@ namespace SEPatRanking {
                         FirstName,
                         ExtracurricularPoints,
                         IDNumber,
-                        Grade};
+                        Grade,
+                        Score,
+                        ServiceHours};
                 rowStudentsRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowStudentsRow);
                 return rowStudentsRow;
@@ -465,6 +487,8 @@ namespace SEPatRanking {
                 this.columnExtracurricularPoints = base.Columns["ExtracurricularPoints"];
                 this.columnIDNumber = base.Columns["IDNumber"];
                 this.columnGrade = base.Columns["Grade"];
+                this.columnScore = base.Columns["Score"];
+                this.columnServiceHours = base.Columns["ServiceHours"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -484,6 +508,10 @@ namespace SEPatRanking {
                 base.Columns.Add(this.columnIDNumber);
                 this.columnGrade = new global::System.Data.DataColumn("Grade", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnGrade);
+                this.columnScore = new global::System.Data.DataColumn("Score", typeof(double), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnScore);
+                this.columnServiceHours = new global::System.Data.DataColumn("ServiceHours", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnServiceHours);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnIDNumber}, true));
                 this.columnLastName.MaxLength = 255;
@@ -740,6 +768,38 @@ namespace SEPatRanking {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public double Score {
+                get {
+                    try {
+                        return ((double)(this[this.tableStudents.ScoreColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Score\' in table \'Students\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableStudents.ScoreColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int ServiceHours {
+                get {
+                    try {
+                        return ((int)(this[this.tableStudents.ServiceHoursColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ServiceHours\' in table \'Students\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableStudents.ServiceHoursColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsGPANull() {
                 return this.IsNull(this.tableStudents.GPAColumn);
             }
@@ -808,6 +868,30 @@ namespace SEPatRanking {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetGradeNull() {
                 this[this.tableStudents.GradeColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsScoreNull() {
+                return this.IsNull(this.tableStudents.ScoreColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetScoreNull() {
+                this[this.tableStudents.ScoreColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsServiceHoursNull() {
+                return this.IsNull(this.tableStudents.ServiceHoursColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetServiceHoursNull() {
+                this[this.tableStudents.ServiceHoursColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -977,26 +1061,32 @@ namespace SEPatRanking.SEPat_TestDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("ExtracurricularPoints", "ExtracurricularPoints");
             tableMapping.ColumnMappings.Add("IDNumber", "IDNumber");
             tableMapping.ColumnMappings.Add("Grade", "Grade");
+            tableMapping.ColumnMappings.Add("Score", "Score");
+            tableMapping.ColumnMappings.Add("ServiceHours", "ServiceHours");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.OleDb.OleDbCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM `Students` WHERE ((`ID` = ?) AND ((? = 1 AND `Last Name` IS NULL) OR (`Last Name` = ?)) AND ((? = 1 AND `First Name` IS NULL) OR (`First Name` = ?)) AND ((? = 1 AND `GPA` IS NULL) OR (`GPA` = ?)) AND ((? = 1 AND `Extracurricular Points` IS NULL) OR (`Extracurricular Points` = ?)) AND ((? = 1 AND `Attendance` IS NULL) OR (`Attendance` = ?)))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM `Students` WHERE (((? = 1 AND `GPA` IS NULL) OR (`GPA` = ?)) AND ((? = 1 AND `Attendance` IS NULL) OR (`Attendance` = ?)) AND ((? = 1 AND `ExtracurricularPoints` IS NULL) OR (`ExtracurricularPoints` = ?)) AND ((? = 1 AND `FirstName` IS NULL) OR (`FirstName` = ?)) AND ((? = 1 AND `LastName` IS NULL) OR (`LastName` = ?)) AND (`IDNumber` = ?) AND ((? = 1 AND `Grade` IS NULL) OR (`Grade` = ?)) AND ((? = 1 AND `Score` IS NULL) OR (`Score` = ?)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_ID", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ID", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_Last_Name", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Last Name", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Last_Name", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Last Name", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_First_Name", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "First Name", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_First_Name", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "First Name", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_GPA", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "GPA", global::System.Data.DataRowVersion.Original, true, null));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_GPA", global::System.Data.OleDb.OleDbType.Double, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "GPA", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_Extracurricular_Points", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Extracurricular Points", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Extracurricular_Points", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Extracurricular Points", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_Attendance", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Attendance", global::System.Data.DataRowVersion.Original, true, null));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Attendance", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Attendance", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_ExtracurricularPoints", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ExtracurricularPoints", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_ExtracurricularPoints", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ExtracurricularPoints", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_FirstName", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "FirstName", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_FirstName", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "FirstName", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_LastName", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "LastName", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_LastName", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "LastName", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_IDNumber", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "IDNumber", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_Grade", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Grade", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Grade", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Grade", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_Score", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Score", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Score", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Score", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.InsertCommand = new global::System.Data.OleDb.OleDbCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
             this._adapter.InsertCommand.CommandText = "INSERT INTO `Students` (`GPA`, `Attendance`, `ExtracurricularPoints`, `FirstName`" +
-                ", `LastName`, `IDNumber`) VALUES (?, ?, ?, ?, ?, ?)";
+                ", `LastName`, `IDNumber`, `Grade`, `Score`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("GPA", global::System.Data.OleDb.OleDbType.Double, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "GPA", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Attendance", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Attendance", global::System.Data.DataRowVersion.Current, false, null));
@@ -1004,26 +1094,35 @@ namespace SEPatRanking.SEPat_TestDataSetTableAdapters {
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("FirstName", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "FirstName", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("LastName", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "LastName", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IDNumber", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "IDNumber", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Grade", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Grade", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Score", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Score", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand = new global::System.Data.OleDb.OleDbCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE `Students` SET `Last Name` = ?, `First Name` = ?, `GPA` = ?, `Extracurricular Points` = ?, `Attendance` = ? WHERE ((`ID` = ?) AND ((? = 1 AND `Last Name` IS NULL) OR (`Last Name` = ?)) AND ((? = 1 AND `First Name` IS NULL) OR (`First Name` = ?)) AND ((? = 1 AND `GPA` IS NULL) OR (`GPA` = ?)) AND ((? = 1 AND `Extracurricular Points` IS NULL) OR (`Extracurricular Points` = ?)) AND ((? = 1 AND `Attendance` IS NULL) OR (`Attendance` = ?)))";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE `Students` SET `GPA` = ?, `Attendance` = ?, `ExtracurricularPoints` = ?, `FirstName` = ?, `LastName` = ?, `IDNumber` = ?, `Grade` = ?, `Score` = ? WHERE (((? = 1 AND `GPA` IS NULL) OR (`GPA` = ?)) AND ((? = 1 AND `Attendance` IS NULL) OR (`Attendance` = ?)) AND ((? = 1 AND `ExtracurricularPoints` IS NULL) OR (`ExtracurricularPoints` = ?)) AND ((? = 1 AND `FirstName` IS NULL) OR (`FirstName` = ?)) AND ((? = 1 AND `LastName` IS NULL) OR (`LastName` = ?)) AND (`IDNumber` = ?) AND ((? = 1 AND `Grade` IS NULL) OR (`Grade` = ?)) AND ((? = 1 AND `Score` IS NULL) OR (`Score` = ?)))";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Last_Name", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Last Name", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("First_Name", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "First Name", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("GPA", global::System.Data.OleDb.OleDbType.Double, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "GPA", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Extracurricular_Points", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Extracurricular Points", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Attendance", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Attendance", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_ID", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ID", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_Last_Name", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Last Name", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Last_Name", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Last Name", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_First_Name", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "First Name", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_First_Name", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "First Name", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("ExtracurricularPoints", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ExtracurricularPoints", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("FirstName", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "FirstName", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("LastName", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "LastName", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IDNumber", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "IDNumber", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Grade", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Grade", global::System.Data.DataRowVersion.Current, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Score", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Score", global::System.Data.DataRowVersion.Current, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_GPA", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "GPA", global::System.Data.DataRowVersion.Original, true, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_GPA", global::System.Data.OleDb.OleDbType.Double, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "GPA", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_Extracurricular_Points", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Extracurricular Points", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Extracurricular_Points", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Extracurricular Points", global::System.Data.DataRowVersion.Original, false, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_Attendance", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Attendance", global::System.Data.DataRowVersion.Original, true, null));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Attendance", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Attendance", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_ExtracurricularPoints", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ExtracurricularPoints", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_ExtracurricularPoints", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ExtracurricularPoints", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_FirstName", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "FirstName", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_FirstName", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "FirstName", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_LastName", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "LastName", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_LastName", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "LastName", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_IDNumber", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "IDNumber", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_Grade", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Grade", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Grade", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Grade", global::System.Data.DataRowVersion.Original, false, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_Score", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Score", global::System.Data.DataRowVersion.Original, true, null));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Score", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Score", global::System.Data.DataRowVersion.Original, false, null));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1036,49 +1135,45 @@ namespace SEPatRanking.SEPat_TestDataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.OleDb.OleDbCommand[4];
+            this._commandCollection = new global::System.Data.OleDb.OleDbCommand[3];
             this._commandCollection[0] = new global::System.Data.OleDb.OleDbCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT GPA, Attendance, ExtracurricularPoints, FirstName, LastName, IDNumber FROM" +
-                " Students";
+            this._commandCollection[0].CommandText = "SELECT GPA, Attendance, ExtracurricularPoints, FirstName, LastName, IDNumber, Gra" +
+                "de, Score FROM Students";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.OleDb.OleDbCommand();
             this._commandCollection[1].Connection = this.Connection;
             this._commandCollection[1].CommandText = "UPDATE `Students` SET `LastName` = ?, `FirstName` = ?, `GPA` = ?, `Extracurricula" +
-                "rPoints` = ?, `Attendance` = ? WHERE (`IDNumber` = ?)";
+                "rPoints` = ?, `Attendance` = ?, `Grade`= ?, `Score`=? WHERE (`IDNumber` = ?)";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("LastName", global::System.Data.OleDb.OleDbType.WChar, 63, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "LastName", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[1].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("FirstName", global::System.Data.OleDb.OleDbType.WChar, 63, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "FirstName", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[1].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("GPA", global::System.Data.OleDb.OleDbType.Double, 0, global::System.Data.ParameterDirection.Input, ((byte)(15)), ((byte)(0)), "GPA", global::System.Data.DataRowVersion.Current, false, null));
-            this._commandCollection[1].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("ExtracurricularPoints", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ExtracurricularPoints", global::System.Data.DataRowVersion.Current, false, null));
-            this._commandCollection[1].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Attendance", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Attendance", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("ExtracurricularPoints", global::System.Data.OleDb.OleDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ExtracurricularPoints", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Attendance", global::System.Data.OleDb.OleDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Attendance", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Grade", global::System.Data.OleDb.OleDbType.WChar, 2, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Grade", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Score", global::System.Data.OleDb.OleDbType.Double, 0, global::System.Data.ParameterDirection.Input, ((byte)(15)), ((byte)(0)), "Score", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[1].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_IDNumber", global::System.Data.OleDb.OleDbType.WChar, 6, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "IDNumber", global::System.Data.DataRowVersion.Original, false, null));
             this._commandCollection[2] = new global::System.Data.OleDb.OleDbCommand();
             this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = "UPDATE `Students` SET `Attendance` = ? WHERE (`IDNumber` = ?)";
+            this._commandCollection[2].CommandText = "UPDATE `Students` SET ?=? WHERE (`ID` = ?)";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[2].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Last_Name", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Last Name", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[2].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("First_Name", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "First Name", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[2].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("GPA", global::System.Data.OleDb.OleDbType.Double, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "GPA", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[2].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Extracurricular_Points", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Extracurricular Points", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[2].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Attendance", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Attendance", global::System.Data.DataRowVersion.Current, false, null));
-            this._commandCollection[2].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_IDNumber", global::System.Data.OleDb.OleDbType.WChar, 6, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "IDNumber", global::System.Data.DataRowVersion.Original, false, null));
-            this._commandCollection[3] = new global::System.Data.OleDb.OleDbCommand();
-            this._commandCollection[3].Connection = this.Connection;
-            this._commandCollection[3].CommandText = "UPDATE `Students` SET ?=? WHERE (`ID` = ?)";
-            this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[3].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Last_Name", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Last Name", global::System.Data.DataRowVersion.Current, false, null));
-            this._commandCollection[3].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("First_Name", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "First Name", global::System.Data.DataRowVersion.Current, false, null));
-            this._commandCollection[3].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("GPA", global::System.Data.OleDb.OleDbType.Double, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "GPA", global::System.Data.DataRowVersion.Current, false, null));
-            this._commandCollection[3].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Extracurricular_Points", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Extracurricular Points", global::System.Data.DataRowVersion.Current, false, null));
-            this._commandCollection[3].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Attendance", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Attendance", global::System.Data.DataRowVersion.Current, false, null));
-            this._commandCollection[3].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_ID", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ID", global::System.Data.DataRowVersion.Original, false, null));
-            this._commandCollection[3].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_Last_Name", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Last Name", global::System.Data.DataRowVersion.Original, true, null));
-            this._commandCollection[3].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Last_Name", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Last Name", global::System.Data.DataRowVersion.Original, false, null));
-            this._commandCollection[3].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_First_Name", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "First Name", global::System.Data.DataRowVersion.Original, true, null));
-            this._commandCollection[3].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_First_Name", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "First Name", global::System.Data.DataRowVersion.Original, false, null));
-            this._commandCollection[3].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_GPA", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "GPA", global::System.Data.DataRowVersion.Original, true, null));
-            this._commandCollection[3].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_GPA", global::System.Data.OleDb.OleDbType.Double, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "GPA", global::System.Data.DataRowVersion.Original, false, null));
-            this._commandCollection[3].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_Extracurricular_Points", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Extracurricular Points", global::System.Data.DataRowVersion.Original, true, null));
-            this._commandCollection[3].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Extracurricular_Points", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Extracurricular Points", global::System.Data.DataRowVersion.Original, false, null));
-            this._commandCollection[3].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_Attendance", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Attendance", global::System.Data.DataRowVersion.Original, true, null));
-            this._commandCollection[3].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Attendance", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Attendance", global::System.Data.DataRowVersion.Original, false, null));
+            this._commandCollection[2].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_ID", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ID", global::System.Data.DataRowVersion.Original, false, null));
+            this._commandCollection[2].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_Last_Name", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Last Name", global::System.Data.DataRowVersion.Original, true, null));
+            this._commandCollection[2].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Last_Name", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Last Name", global::System.Data.DataRowVersion.Original, false, null));
+            this._commandCollection[2].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_First_Name", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "First Name", global::System.Data.DataRowVersion.Original, true, null));
+            this._commandCollection[2].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_First_Name", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "First Name", global::System.Data.DataRowVersion.Original, false, null));
+            this._commandCollection[2].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_GPA", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "GPA", global::System.Data.DataRowVersion.Original, true, null));
+            this._commandCollection[2].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_GPA", global::System.Data.OleDb.OleDbType.Double, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "GPA", global::System.Data.DataRowVersion.Original, false, null));
+            this._commandCollection[2].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_Extracurricular_Points", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Extracurricular Points", global::System.Data.DataRowVersion.Original, true, null));
+            this._commandCollection[2].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Extracurricular_Points", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Extracurricular Points", global::System.Data.DataRowVersion.Original, false, null));
+            this._commandCollection[2].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_Attendance", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Attendance", global::System.Data.DataRowVersion.Original, true, null));
+            this._commandCollection[2].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Attendance", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Attendance", global::System.Data.DataRowVersion.Original, false, null));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1138,47 +1233,68 @@ namespace SEPatRanking.SEPat_TestDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_ID, string Original_Last_Name, string Original_First_Name, global::System.Nullable<double> Original_GPA, global::System.Nullable<int> Original_Extracurricular_Points, global::System.Nullable<int> Original_Attendance) {
-            this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_ID));
-            if ((Original_Last_Name == null)) {
-                this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[2].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[2].Value = ((string)(Original_Last_Name));
-            }
-            if ((Original_First_Name == null)) {
-                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[4].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[4].Value = ((string)(Original_First_Name));
-            }
+        public virtual int Delete(global::System.Nullable<double> Original_GPA, global::System.Nullable<int> Original_Attendance, global::System.Nullable<int> Original_ExtracurricularPoints, string Original_FirstName, string Original_LastName, string Original_IDNumber, string Original_Grade, global::System.Nullable<int> Original_Score) {
             if ((Original_GPA.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[6].Value = ((double)(Original_GPA.Value));
+                this.Adapter.DeleteCommand.Parameters[0].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[1].Value = ((double)(Original_GPA.Value));
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[6].Value = global::System.DBNull.Value;
-            }
-            if ((Original_Extracurricular_Points.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[7].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[8].Value = ((int)(Original_Extracurricular_Points.Value));
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[7].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[8].Value = global::System.DBNull.Value;
+                this.Adapter.DeleteCommand.Parameters[0].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
             if ((Original_Attendance.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[9].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[10].Value = ((int)(Original_Attendance.Value));
+                this.Adapter.DeleteCommand.Parameters[2].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[3].Value = ((int)(Original_Attendance.Value));
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[9].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[2].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            if ((Original_ExtracurricularPoints.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[4].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[5].Value = ((int)(Original_ExtracurricularPoints.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[4].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[5].Value = global::System.DBNull.Value;
+            }
+            if ((Original_FirstName == null)) {
+                this.Adapter.DeleteCommand.Parameters[6].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[7].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[6].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[7].Value = ((string)(Original_FirstName));
+            }
+            if ((Original_LastName == null)) {
+                this.Adapter.DeleteCommand.Parameters[8].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[9].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[8].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[9].Value = ((string)(Original_LastName));
+            }
+            if ((Original_IDNumber == null)) {
                 this.Adapter.DeleteCommand.Parameters[10].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[10].Value = ((string)(Original_IDNumber));
+            }
+            if ((Original_Grade == null)) {
+                this.Adapter.DeleteCommand.Parameters[11].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[12].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[11].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[12].Value = ((string)(Original_Grade));
+            }
+            if ((Original_Score.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[13].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[14].Value = ((int)(Original_Score.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[13].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[14].Value = global::System.DBNull.Value;
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -1200,7 +1316,7 @@ namespace SEPatRanking.SEPat_TestDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(global::System.Nullable<double> GPA, global::System.Nullable<int> Attendance, global::System.Nullable<int> ExtracurricularPoints, string FirstName, string LastName, string IDNumber) {
+        public virtual int Insert(global::System.Nullable<double> GPA, global::System.Nullable<int> Attendance, global::System.Nullable<int> ExtracurricularPoints, string FirstName, string LastName, string IDNumber, string Grade, global::System.Nullable<decimal> Score) {
             if ((GPA.HasValue == true)) {
                 this.Adapter.InsertCommand.Parameters[0].Value = ((double)(GPA.Value));
             }
@@ -1237,6 +1353,18 @@ namespace SEPatRanking.SEPat_TestDataSetTableAdapters {
             else {
                 this.Adapter.InsertCommand.Parameters[5].Value = ((string)(IDNumber));
             }
+            if ((Grade == null)) {
+                this.Adapter.InsertCommand.Parameters[6].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[6].Value = ((string)(Grade));
+            }
+            if ((Score.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[7].Value = ((decimal)(Score.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[7].Value = global::System.DBNull.Value;
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -1257,77 +1385,132 @@ namespace SEPatRanking.SEPat_TestDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string Last_Name, string First_Name, global::System.Nullable<double> GPA, global::System.Nullable<int> Extracurricular_Points, global::System.Nullable<int> Attendance, int Original_ID, string Original_Last_Name, string Original_First_Name, global::System.Nullable<double> Original_GPA, global::System.Nullable<int> Original_Extracurricular_Points, global::System.Nullable<int> Original_Attendance) {
-            if ((Last_Name == null)) {
+        public virtual int Update(
+                    global::System.Nullable<double> GPA, 
+                    global::System.Nullable<int> Attendance, 
+                    global::System.Nullable<int> ExtracurricularPoints, 
+                    string FirstName, 
+                    string LastName, 
+                    string IDNumber, 
+                    string Grade, 
+                    global::System.Nullable<int> Score, 
+                    global::System.Nullable<double> Original_GPA, 
+                    global::System.Nullable<int> Original_Attendance, 
+                    global::System.Nullable<int> Original_ExtracurricularPoints, 
+                    string Original_FirstName, 
+                    string Original_LastName, 
+                    string Original_IDNumber, 
+                    string Original_Grade, 
+                    global::System.Nullable<int> Original_Score) {
+            if ((GPA.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[0].Value = ((double)(GPA.Value));
+            }
+            else {
                 this.Adapter.UpdateCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
-            else {
-                this.Adapter.UpdateCommand.Parameters[0].Value = ((string)(Last_Name));
+            if ((Attendance.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(Attendance.Value));
             }
-            if ((First_Name == null)) {
+            else {
                 this.Adapter.UpdateCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
-            else {
-                this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(First_Name));
-            }
-            if ((GPA.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[2].Value = ((double)(GPA.Value));
+            if ((ExtracurricularPoints.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(ExtracurricularPoints.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[2].Value = global::System.DBNull.Value;
             }
-            if ((Extracurricular_Points.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(Extracurricular_Points.Value));
-            }
-            else {
+            if ((FirstName == null)) {
                 this.Adapter.UpdateCommand.Parameters[3].Value = global::System.DBNull.Value;
             }
-            if ((Attendance.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(Attendance.Value));
-            }
             else {
+                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(FirstName));
+            }
+            if ((LastName == null)) {
                 this.Adapter.UpdateCommand.Parameters[4].Value = global::System.DBNull.Value;
             }
-            this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(Original_ID));
-            if ((Original_Last_Name == null)) {
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[7].Value = global::System.DBNull.Value;
+            else {
+                this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(LastName));
+            }
+            if ((IDNumber == null)) {
+                this.Adapter.UpdateCommand.Parameters[5].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(Original_Last_Name));
+                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(IDNumber));
             }
-            if ((Original_First_Name == null)) {
+            if ((Grade == null)) {
+                this.Adapter.UpdateCommand.Parameters[6].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((string)(Grade));
+            }
+            if ((Score.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((int)(Score.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[7].Value = global::System.DBNull.Value;
+            }
+            if ((Original_GPA.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((double)(Original_GPA.Value));
+            }
+            else {
                 this.Adapter.UpdateCommand.Parameters[8].Value = ((object)(1));
                 this.Adapter.UpdateCommand.Parameters[9].Value = global::System.DBNull.Value;
             }
-            else {
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((string)(Original_First_Name));
-            }
-            if ((Original_GPA.HasValue == true)) {
+            if ((Original_Attendance.HasValue == true)) {
                 this.Adapter.UpdateCommand.Parameters[10].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[11].Value = ((double)(Original_GPA.Value));
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((int)(Original_Attendance.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[10].Value = ((object)(1));
                 this.Adapter.UpdateCommand.Parameters[11].Value = global::System.DBNull.Value;
             }
-            if ((Original_Extracurricular_Points.HasValue == true)) {
+            if ((Original_ExtracurricularPoints.HasValue == true)) {
                 this.Adapter.UpdateCommand.Parameters[12].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[13].Value = ((int)(Original_Extracurricular_Points.Value));
+                this.Adapter.UpdateCommand.Parameters[13].Value = ((int)(Original_ExtracurricularPoints.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[12].Value = ((object)(1));
                 this.Adapter.UpdateCommand.Parameters[13].Value = global::System.DBNull.Value;
             }
-            if ((Original_Attendance.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[14].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[15].Value = ((int)(Original_Attendance.Value));
-            }
-            else {
+            if ((Original_FirstName == null)) {
                 this.Adapter.UpdateCommand.Parameters[14].Value = ((object)(1));
                 this.Adapter.UpdateCommand.Parameters[15].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[14].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[15].Value = ((string)(Original_FirstName));
+            }
+            if ((Original_LastName == null)) {
+                this.Adapter.UpdateCommand.Parameters[16].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[17].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[16].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[17].Value = ((string)(Original_LastName));
+            }
+            if ((Original_IDNumber == null)) {
+                this.Adapter.UpdateCommand.Parameters[18].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[18].Value = ((string)(Original_IDNumber));
+            }
+            if ((Original_Grade == null)) {
+                this.Adapter.UpdateCommand.Parameters[19].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[20].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[19].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[20].Value = ((string)(Original_Grade));
+            }
+            if ((Original_Score.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[21].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[22].Value = ((int)(Original_Score.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[21].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[22].Value = global::System.DBNull.Value;
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -1348,8 +1531,16 @@ namespace SEPatRanking.SEPat_TestDataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(global::System.Nullable<double> GPA, global::System.Nullable<int> Attendance, global::System.Nullable<int> ExtracurricularPoints, string FirstName, string LastName, string Grade, global::System.Nullable<int> Score, global::System.Nullable<double> Original_GPA, global::System.Nullable<int> Original_Attendance, global::System.Nullable<int> Original_ExtracurricularPoints, string Original_FirstName, string Original_LastName, string Original_IDNumber, string Original_Grade, global::System.Nullable<int> Original_Score) {
+            return this.Update(GPA, Attendance, ExtracurricularPoints, FirstName, LastName, Original_IDNumber, Grade, Score, Original_GPA, Original_Attendance, Original_ExtracurricularPoints, Original_FirstName, Original_LastName, Original_IDNumber, Original_Grade, Original_Score);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, false)]
-        public virtual int UpdateQuery(string LastName, string FirstName, global::System.Nullable<decimal> GPA, global::System.Nullable<int> ExtracurricularPoints, global::System.Nullable<int> Attendance, string Original_IDNumber) {
+        public virtual int UpdateQuery(string LastName, string FirstName, global::System.Nullable<decimal> GPA, global::System.Nullable<short> ExtracurricularPoints, global::System.Nullable<short> Attendance, string Grade, global::System.Nullable<decimal> Score, string Original_IDNumber) {
             global::System.Data.OleDb.OleDbCommand command = this.CommandCollection[1];
             if ((LastName == null)) {
                 command.Parameters[0].Value = global::System.DBNull.Value;
@@ -1370,57 +1561,34 @@ namespace SEPatRanking.SEPat_TestDataSetTableAdapters {
                 command.Parameters[2].Value = global::System.DBNull.Value;
             }
             if ((ExtracurricularPoints.HasValue == true)) {
-                command.Parameters[3].Value = ((int)(ExtracurricularPoints.Value));
+                command.Parameters[3].Value = ((short)(ExtracurricularPoints.Value));
             }
             else {
                 command.Parameters[3].Value = global::System.DBNull.Value;
             }
             if ((Attendance.HasValue == true)) {
-                command.Parameters[4].Value = ((int)(Attendance.Value));
+                command.Parameters[4].Value = ((short)(Attendance.Value));
             }
             else {
                 command.Parameters[4].Value = global::System.DBNull.Value;
             }
-            if ((Original_IDNumber == null)) {
+            if ((Grade == null)) {
                 command.Parameters[5].Value = global::System.DBNull.Value;
             }
             else {
-                command.Parameters[5].Value = ((string)(Original_IDNumber));
+                command.Parameters[5].Value = ((string)(Grade));
             }
-            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
-            if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                command.Connection.Open();
-            }
-            int returnValue;
-            try {
-                returnValue = command.ExecuteNonQuery();
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    command.Connection.Close();
-                }
-            }
-            return returnValue;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, false)]
-        public virtual int UpdateQueryAttendance(global::System.Nullable<int> Attendance, string Original_IDNumber) {
-            global::System.Data.OleDb.OleDbCommand command = this.CommandCollection[2];
-            if ((Attendance.HasValue == true)) {
-                command.Parameters[0].Value = ((int)(Attendance.Value));
+            if ((Score.HasValue == true)) {
+                command.Parameters[6].Value = ((decimal)(Score.Value));
             }
             else {
-                command.Parameters[0].Value = global::System.DBNull.Value;
+                command.Parameters[6].Value = global::System.DBNull.Value;
             }
             if ((Original_IDNumber == null)) {
-                command.Parameters[1].Value = global::System.DBNull.Value;
+                command.Parameters[7].Value = global::System.DBNull.Value;
             }
             else {
-                command.Parameters[1].Value = ((string)(Original_IDNumber));
+                command.Parameters[7].Value = ((string)(Original_IDNumber));
             }
             global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
             if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -1460,7 +1628,7 @@ namespace SEPatRanking.SEPat_TestDataSetTableAdapters {
                     global::System.Nullable<int> Original_Extracurricular_Points, 
                     global::System.Nullable<int> IsNull_Attendance, 
                     global::System.Nullable<int> Original_Attendance) {
-            global::System.Data.OleDb.OleDbCommand command = this.CommandCollection[3];
+            global::System.Data.OleDb.OleDbCommand command = this.CommandCollection[2];
             if ((Last_Name == null)) {
                 command.Parameters[0].Value = global::System.DBNull.Value;
             }

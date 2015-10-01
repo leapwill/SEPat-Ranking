@@ -33,7 +33,7 @@ namespace SEPatRanking
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainActivity());
+            Application.Run(new MainForm());
         }
     }
 }
