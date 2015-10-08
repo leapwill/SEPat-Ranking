@@ -39,13 +39,13 @@ namespace SEPatRanking
         {
             InitializeComponent();
             studentsBindingSource.Filter = str;
-            studentsTableAdapter.Fill(sEPat_TestDataSet.Students);
+            studentsTableAdapter.Fill(sEPat_DataSet.Students);
         }
 
         private void ViewDatabaseActivity_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'sEPat_TestDataSet.Students' table. You can move, or remove it, as needed.
-            this.studentsTableAdapter.Fill(this.sEPat_TestDataSet.Students);
+            // TODO: This line of code loads data into the 'sEPat_DataSet.Students' table. You can move, or remove it, as needed.
+            this.studentsTableAdapter.Fill(this.sEPat_DataSet.Students);
 
         }
     }

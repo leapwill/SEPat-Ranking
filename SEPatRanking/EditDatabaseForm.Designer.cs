@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.sEPat_TestDataSet = new SEPatRanking.SEPat_TestDataSet();
+            this.sEPat_DataSet = new SEPatRanking.SEPat_DataSet();
             this.dataGridView = new System.Windows.Forms.DataGridView();
             this.studentsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.studentsTableAdapter = new SEPatRanking.SEPat_TestDataSetTableAdapters.StudentsTableAdapter();
+            this.studentsTableAdapter = new SEPatRanking.SEPat_DataSetTableAdapters.StudentsTableAdapter();
             this.Score = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lastNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.firstNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -41,15 +41,15 @@
             this.gPADataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.extracurricularPointsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.attendanceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.sEPat_TestDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sEPat_DataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.studentsBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
-            // sEPat_TestDataSet
+            // sEPat_DataSet
             // 
-            this.sEPat_TestDataSet.DataSetName = "SEPat_TestDataSet";
-            this.sEPat_TestDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            this.sEPat_DataSet.DataSetName = "SEPat_DataSet";
+            this.sEPat_DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // dataGridView
             // 
@@ -74,7 +74,7 @@
             // studentsBindingSource
             // 
             this.studentsBindingSource.DataMember = "Students";
-            this.studentsBindingSource.DataSource = this.sEPat_TestDataSet;
+            this.studentsBindingSource.DataSource = this.sEPat_DataSet;
             // 
             // studentsTableAdapter
             // 
@@ -145,7 +145,7 @@
             this.Name = "ViewDatabaseActivity";
             this.Text = "View the Database";
             this.Load += new System.EventHandler(this.ViewDatabaseActivity_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.sEPat_TestDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sEPat_DataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.studentsBindingSource)).EndInit();
             this.ResumeLayout(false);
@@ -154,10 +154,10 @@
 
         #endregion
 
-        private SEPat_TestDataSet sEPat_TestDataSet;
+        private SEPat_DataSet sEPat_DataSet;
         private System.Windows.Forms.DataGridView dataGridView;
         private System.Windows.Forms.BindingSource studentsBindingSource;
-        private SEPat_TestDataSetTableAdapters.StudentsTableAdapter studentsTableAdapter;
+        private SEPat_DataSetTableAdapters.StudentsTableAdapter studentsTableAdapter;
         private System.Windows.Forms.DataGridViewTextBoxColumn Score;
         private System.Windows.Forms.DataGridViewTextBoxColumn lastNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn firstNameDataGridViewTextBoxColumn;

@@ -25,6 +25,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.OleDb;
+using System.Threading;
 
 namespace SEPatRanking
 {
@@ -37,7 +38,7 @@ namespace SEPatRanking
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            this.studentsTableAdapter.Fill(this.sEPat_TestDataSet.Students);
+            this.studentsTableAdapter.Fill(this.sEPat_DataSet.Students);
             dataGridView1.Sort(dataGridView1.Columns["Score"], ListSortDirection.Descending);
             this.comboBoxSearchSelector.SelectedItem = "LastName";
             this.comboBoxGrade.SelectedItem = "9";
@@ -47,23 +48,22 @@ namespace SEPatRanking
 
         private void buttonAddStudent_Click(object sender, EventArgs e)
         {
-            //CURRENT SCORING IS TEMPORARY
             try //attempt to add a new student
             {
-                decimal score = decimal.Parse(textBoxGPA.Text) + int.Parse(textBoxAttendance.Text) + int.Parse(textBoxExtracurricular.Text);
-                studentsTableAdapter.Insert(double.Parse(textBoxGPA.Text), int.Parse(textBoxAttendance.Text), int.Parse(textBoxExtracurricular.Text), textBoxFirstName.Text, textBoxLastName.Text, textBoxIDNumber.Text, comboBoxGrade.Text, score);
+                
+                studentsTableAdapter.Insert(double.Parse(textBoxGPA.Text), textBoxFirstName.Text, textBoxLastName.Text, textBoxIDNumber.Text, comboBoxGrade.Text, 0, short.Parse(textBoxAttendance.Text), short.Parse(textBoxExtracurricular.Text), short.Parse(textBoxServiceHours.Text));
                 MessageBox.Show("New Student entry added!");
             }
-            catch (FormatException ex) //if it fails because of invalid data in a field (eg letters in Attendance)
+            catch (FormatException ex) //if it fails because of invalid data in a field (eg letters in a number field)
             {
-                MessageBox.Show("You have entered the wrong type of data, try again!");
+                MessageBox.Show("You have entered the wrong type of data, try again!\n" + ex.ToString());
             }
             catch //if it fails because there is a duplicate IDNumber, edit the student instead
             {
-                decimal score = decimal.Parse(textBoxGPA.Text) + int.Parse(textBoxAttendance.Text) + int.Parse(textBoxExtracurricular.Text);
-                studentsTableAdapter.UpdateQuery(textBoxLastName.Text, textBoxFirstName.Text, decimal.Parse(textBoxGPA.Text), short.Parse(textBoxExtracurricular.Text), short.Parse(textBoxAttendance.Text), comboBoxGrade.Text, score, textBoxIDNumber.Text);
+                
+                studentsTableAdapter.UpdateQuery(textBoxLastName.Text, textBoxFirstName.Text, decimal.Parse(textBoxGPA.Text), short.Parse(textBoxExtracurricular.Text), short.Parse(textBoxAttendance.Text), comboBoxGrade.Text, short.Parse(textBoxServiceHours.Text), 0, textBoxIDNumber.Text);
             }
-            this.studentsTableAdapter.Fill(this.sEPat_TestDataSet.Students);
+            this.studentsTableAdapter.Fill(this.sEPat_DataSet.Students);
         }
 
         private void executeOleDbNonQuery(OleDbCommand cmd)
@@ -107,7 +107,7 @@ namespace SEPatRanking
             if (textBoxSearch.Text != "" && comboBoxSearchSelector.Text != "")
             {
                 studentsBindingSource2.Filter = comboBoxSearchSelector.Text + " like \'*" + textBoxSearch.Text + "*\'";
-                studentsTableAdapter.Fill(sEPat_TestDataSet.Students);
+                studentsTableAdapter.Fill(sEPat_DataSet.Students);
             }
             else { }
         }
@@ -115,7 +115,7 @@ namespace SEPatRanking
         private void buttonSearchReset_Click(object sender, EventArgs e)
         { //empties search box and refills dataGridView
             studentsBindingSource2.RemoveFilter();
-            studentsTableAdapter.Fill(sEPat_TestDataSet.Students);
+            studentsTableAdapter.Fill(sEPat_DataSet.Students);
             textBoxSearch.Clear();
         }
 
@@ -168,6 +168,7 @@ namespace SEPatRanking
                 textBoxAttendance.Text = dataGridView1.SelectedRows[0].Cells["Attendance"].Value.ToString();
                 textBoxExtracurricular.Text = dataGridView1.SelectedRows[0].Cells["ExtracurricularPoints"].Value.ToString();
                 comboBoxGrade.SelectedItem = dataGridView1.SelectedRows[0].Cells["Grade"].Value.ToString();
+                textBoxServiceHours.Text = dataGridView1.SelectedRows[0].Cells["ServiceHours"].Value.ToString();
             }
             else { }
         }
@@ -189,19 +190,48 @@ namespace SEPatRanking
                 OleDbCommand cmd = new OleDbCommand();
                 cmd.CommandText = "UPDATE Students SET Attendance=" + (int.Parse(dataGridView1.SelectedRows[i].Cells[5].Value.ToString()) + 1) + " WHERE IDNumber=\'" + idToChange + "\';";
                 executeOleDbNonQuery(cmd);          }
-                this.studentsTableAdapter.Fill(this.sEPat_TestDataSet.Students);
+                this.studentsTableAdapter.Fill(this.sEPat_DataSet.Students);
         }
 
         private void buttonCalculateScores_Click(object sender, EventArgs e)
-        {
-            //WTJTODO: find percentiles for each scoring column
-
-            //WTJTODO: for each student, use defined percentiles to calc and store scores
-            //http://www.wikiwand.com/en/Percentile
-            for (int i = 0; i < int.Parse(sEPat_TestDataSet.Students.Rows.ToString()); i++)
+        { //neec
+            //WTJTODO: thread this and have a loading bar window pop up
+            CalculatingForm calculatingForm = new CalculatingForm();
+            Thread calculatingThread = new Thread(new ThreadStart(calculatingForm.Show));
+            calculatingThread.Start();
+            //first clear all old scores so nothing is double counted WTJTODO
+            int numOfStudents = sEPat_DataSet.Tables["Students"].Rows.Count;
+            for (int i = 0; i < numOfStudents; i++)
             {
-                
+                sEPat_DataSet.Tables["Students"].Rows[i].SetField<double>("Score", 0);
+
             }
+            //creates a sortable list of all students
+            //sort and calc percentiles
+            string[] scoringColumns = {"Attendance","ExtracurricularPoints","GPA","ServiceHours"};
+            for(int i = 0; i < scoringColumns.Length; i++)
+            { //for each column to be scored, create and sort a DataView for each column contributing to the socre
+                DataTable SEPat_DataTable = sEPat_DataSet.Tables["Students"];
+                DataView SEPat_DataView = new DataView(SEPat_DataTable);
+                SEPat_DataView.Sort = scoringColumns[i];
+
+                for (int percentile = 50; percentile <= 100; percentile += 10)
+                { //for each percentile level that allots points, add a point
+                    //use nearest rank method to calc the rank of a percentile
+                    double rankDecimal = (percentile / 100.0) * numOfStudents;
+                    int rank = int.Parse(Math.Ceiling(rankDecimal).ToString());
+                    DataTable sortedTable = SEPat_DataView.ToTable();
+                    for (int j = rank; j < numOfStudents; j++)
+                    {
+                        //get the ID of the student at this rank, get the old score from that IDNumber, and then put the old score +1 directly into the database
+                        string IDNumberOfCurrentStudent = sortedTable.Rows[j]["IDNumber"].ToString();
+                        int oldScore = int.Parse(studentsTableAdapter.GetScore(IDNumberOfCurrentStudent).ToString());
+                        studentsTableAdapter.UpdateQueryScore(decimal.Parse(oldScore.ToString()) + 1, IDNumberOfCurrentStudent);
+                    }
+                }
+            }
+            this.studentsTableAdapter.Fill(this.sEPat_DataSet.Students);
+            calculatingThread.Abort();
         }
     }
 }

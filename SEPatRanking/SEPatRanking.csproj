@@ -77,6 +77,12 @@
     <Compile Include="AboutBox.Designer.cs">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="CalculatingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CalculatingForm.Designer.cs">
+      <DependentUpon>CalculatingForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -97,19 +103,23 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SEPat_TestDataSet.cs">
-      <DependentUpon>SEPat_TestDataSet.xsd</DependentUpon>
+    <Compile Include="SEPat_DataSet.cs">
+      <DependentUpon>SEPat_DataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="SEPat_TestDataSet.Designer.cs">
+    <Compile Include="SEPat_DataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>SEPat_TestDataSet.xsd</DependentUpon>
+      <DependentUpon>SEPat_DataSet.xsd</DependentUpon>
     </Compile>
     <EmbeddedResource Include="AboutBox.resx">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="CalculatingForm.resx">
+      <DependentUpon>CalculatingForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="EditDatabaseForm.resx">
       <DependentUpon>EditDatabaseForm.cs</DependentUpon>
@@ -136,16 +146,16 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="SEPat_TestDataSet.xsc">
-      <DependentUpon>SEPat_TestDataSet.xsd</DependentUpon>
+    <None Include="SEPat_DataSet.xsc">
+      <DependentUpon>SEPat_DataSet.xsd</DependentUpon>
     </None>
-    <None Include="SEPat_TestDataSet.xsd">
+    <None Include="SEPat_DataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>SEPat_TestDataSet.Designer.cs</LastGenOutput>
+      <LastGenOutput>SEPat_DataSet.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
-    <None Include="SEPat_TestDataSet.xss">
-      <DependentUpon>SEPat_TestDataSet.xsd</DependentUpon>
+    <None Include="SEPat_DataSet.xss">
+      <DependentUpon>SEPat_DataSet.xsd</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -153,7 +163,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Untitled.png" />
-    <Content Include="SEPat_Test.accdb">
+    <Content Include="Help.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SEPat_.accdb">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
