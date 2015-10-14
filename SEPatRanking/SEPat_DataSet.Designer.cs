@@ -1142,7 +1142,7 @@ namespace SEPatRanking.SEPat_DataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.OleDb.OleDbCommand[4];
+            this._commandCollection = new global::System.Data.OleDb.OleDbCommand[8];
             this._commandCollection[0] = new global::System.Data.OleDb.OleDbCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT        GPA, FirstName, LastName, IDNumber, Grade, Score, Attendance, Extra" +
@@ -1150,30 +1150,52 @@ namespace SEPatRanking.SEPat_DataSetTableAdapters {
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.OleDb.OleDbCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "SELECT Score FROM Students WHERE `IDNumber` = ?";
+            this._commandCollection[1].CommandText = "DELETE FROM `Students` WHERE `IDNumber` = ?";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[1].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IDNumber", global::System.Data.OleDb.OleDbType.WChar, 6, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "IDNumber", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IDNumber", global::System.Data.OleDb.OleDbType.WChar, 6, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "IDNumber", global::System.Data.DataRowVersion.Original, false, null));
             this._commandCollection[2] = new global::System.Data.OleDb.OleDbCommand();
             this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = "UPDATE `Students` SET `LastName` = ?, `FirstName` = ?, `GPA` = ?, `Extracurricula" +
-                "rPoints` = ?, `Attendance` = ?, `Grade`= ?, `ServiceHours` = ?, `Score`= ? WHERE" +
-                " (`IDNumber` = ?)";
+            this._commandCollection[2].CommandText = "SELECT `Grade` FROM Students WHERE `IDNumber` = ?";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[2].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("LastName", global::System.Data.OleDb.OleDbType.WChar, 63, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "LastName", global::System.Data.DataRowVersion.Current, false, null));
-            this._commandCollection[2].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("FirstName", global::System.Data.OleDb.OleDbType.WChar, 63, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "FirstName", global::System.Data.DataRowVersion.Current, false, null));
-            this._commandCollection[2].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("GPA", global::System.Data.OleDb.OleDbType.Double, 0, global::System.Data.ParameterDirection.Input, ((byte)(15)), ((byte)(0)), "GPA", global::System.Data.DataRowVersion.Current, false, null));
-            this._commandCollection[2].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("ExtracurricularPoints", global::System.Data.OleDb.OleDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ExtracurricularPoints", global::System.Data.DataRowVersion.Current, false, null));
-            this._commandCollection[2].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Attendance", global::System.Data.OleDb.OleDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Attendance", global::System.Data.DataRowVersion.Current, false, null));
-            this._commandCollection[2].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Grade", global::System.Data.OleDb.OleDbType.WChar, 2, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Grade", global::System.Data.DataRowVersion.Current, false, null));
-            this._commandCollection[2].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("ServiceHours", global::System.Data.OleDb.OleDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ServiceHours", global::System.Data.DataRowVersion.Current, false, null));
-            this._commandCollection[2].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Score", global::System.Data.OleDb.OleDbType.Double, 0, global::System.Data.ParameterDirection.Input, ((byte)(15)), ((byte)(0)), "Score", global::System.Data.DataRowVersion.Current, false, null));
-            this._commandCollection[2].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_IDNumber", global::System.Data.OleDb.OleDbType.WChar, 6, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "IDNumber", global::System.Data.DataRowVersion.Original, false, null));
+            this._commandCollection[2].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IDNumber", global::System.Data.OleDb.OleDbType.WChar, 6, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "IDNumber", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[3] = new global::System.Data.OleDb.OleDbCommand();
             this._commandCollection[3].Connection = this.Connection;
-            this._commandCollection[3].CommandText = "UPDATE `Students` SET `Score` = ? WHERE `IDNumber` = ?";
+            this._commandCollection[3].CommandText = "SELECT Score FROM Students WHERE `IDNumber` = ?";
             this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[3].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Score", global::System.Data.OleDb.OleDbType.Double, 0, global::System.Data.ParameterDirection.Input, ((byte)(15)), ((byte)(0)), "Score", global::System.Data.DataRowVersion.Current, false, null));
-            this._commandCollection[3].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_IDNumber", global::System.Data.OleDb.OleDbType.WChar, 6, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "IDNumber", global::System.Data.DataRowVersion.Original, false, null));
+            this._commandCollection[3].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IDNumber", global::System.Data.OleDb.OleDbType.WChar, 6, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "IDNumber", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[4] = new global::System.Data.OleDb.OleDbCommand();
+            this._commandCollection[4].Connection = this.Connection;
+            this._commandCollection[4].CommandText = "UPDATE `Students` SET `LastName` = ?, `FirstName` = ?, `GPA` = ?, `Extracurricula" +
+                "rPoints` = ?, `Attendance` = ?, `Grade`= ?, `ServiceHours` = ?, `Score`= ? WHERE" +
+                " (`IDNumber` = ?)";
+            this._commandCollection[4].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[4].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("LastName", global::System.Data.OleDb.OleDbType.WChar, 63, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "LastName", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[4].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("FirstName", global::System.Data.OleDb.OleDbType.WChar, 63, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "FirstName", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[4].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("GPA", global::System.Data.OleDb.OleDbType.Double, 0, global::System.Data.ParameterDirection.Input, ((byte)(15)), ((byte)(0)), "GPA", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[4].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("ExtracurricularPoints", global::System.Data.OleDb.OleDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ExtracurricularPoints", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[4].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Attendance", global::System.Data.OleDb.OleDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Attendance", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[4].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Grade", global::System.Data.OleDb.OleDbType.WChar, 2, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Grade", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[4].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("ServiceHours", global::System.Data.OleDb.OleDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ServiceHours", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[4].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Score", global::System.Data.OleDb.OleDbType.Double, 0, global::System.Data.ParameterDirection.Input, ((byte)(15)), ((byte)(0)), "Score", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[4].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_IDNumber", global::System.Data.OleDb.OleDbType.WChar, 6, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "IDNumber", global::System.Data.DataRowVersion.Original, false, null));
+            this._commandCollection[5] = new global::System.Data.OleDb.OleDbCommand();
+            this._commandCollection[5].Connection = this.Connection;
+            this._commandCollection[5].CommandText = "UPDATE `Students` SET `Attendance` = ? WHERE `IDNumber` = ?";
+            this._commandCollection[5].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[5].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Attendance", global::System.Data.OleDb.OleDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Attendance", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[5].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_IDNumber", global::System.Data.OleDb.OleDbType.WChar, 6, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "IDNumber", global::System.Data.DataRowVersion.Original, false, null));
+            this._commandCollection[6] = new global::System.Data.OleDb.OleDbCommand();
+            this._commandCollection[6].Connection = this.Connection;
+            this._commandCollection[6].CommandText = "UPDATE `Students` SET `Grade` = ? WHERE `IDNumber` = ?";
+            this._commandCollection[6].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[6].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Grade", global::System.Data.OleDb.OleDbType.WChar, 2, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Grade", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[6].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_IDNumber", global::System.Data.OleDb.OleDbType.WChar, 6, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "IDNumber", global::System.Data.DataRowVersion.Original, false, null));
+            this._commandCollection[7] = new global::System.Data.OleDb.OleDbCommand();
+            this._commandCollection[7].Connection = this.Connection;
+            this._commandCollection[7].CommandText = "UPDATE `Students` SET `Score` = ? WHERE `IDNumber` = ?";
+            this._commandCollection[7].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[7].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Score", global::System.Data.OleDb.OleDbType.Double, 0, global::System.Data.ParameterDirection.Input, ((byte)(15)), ((byte)(0)), "Score", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[7].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_IDNumber", global::System.Data.OleDb.OleDbType.WChar, 6, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "IDNumber", global::System.Data.DataRowVersion.Original, false, null));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1586,8 +1608,71 @@ namespace SEPatRanking.SEPat_DataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual global::System.Nullable<double> GetScore(string IDNumber) {
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, false)]
+        public virtual int DeleteQuery(string IDNumber) {
             global::System.Data.OleDb.OleDbCommand command = this.CommandCollection[1];
+            if ((IDNumber == null)) {
+                command.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            else {
+                command.Parameters[0].Value = ((string)(IDNumber));
+            }
+            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
+            if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                command.Connection.Open();
+            }
+            int returnValue;
+            try {
+                returnValue = command.ExecuteNonQuery();
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    command.Connection.Close();
+                }
+            }
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual string GetGrade(string IDNumber) {
+            global::System.Data.OleDb.OleDbCommand command = this.CommandCollection[2];
+            if ((IDNumber == null)) {
+                command.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            else {
+                command.Parameters[0].Value = ((string)(IDNumber));
+            }
+            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
+            if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                command.Connection.Open();
+            }
+            object returnValue;
+            try {
+                returnValue = command.ExecuteScalar();
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    command.Connection.Close();
+                }
+            }
+            if (((returnValue == null) 
+                        || (returnValue.GetType() == typeof(global::System.DBNull)))) {
+                return null;
+            }
+            else {
+                return ((string)(returnValue));
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual global::System.Nullable<double> GetScore(string IDNumber) {
+            global::System.Data.OleDb.OleDbCommand command = this.CommandCollection[3];
             if ((IDNumber == null)) {
                 command.Parameters[0].Value = global::System.DBNull.Value;
             }
@@ -1622,7 +1707,7 @@ namespace SEPatRanking.SEPat_DataSetTableAdapters {
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, false)]
         public virtual int UpdateQuery(string LastName, string FirstName, global::System.Nullable<decimal> GPA, global::System.Nullable<short> ExtracurricularPoints, global::System.Nullable<short> Attendance, string Grade, global::System.Nullable<short> ServiceHours, global::System.Nullable<decimal> Score, string Original_IDNumber) {
-            global::System.Data.OleDb.OleDbCommand command = this.CommandCollection[2];
+            global::System.Data.OleDb.OleDbCommand command = this.CommandCollection[4];
             if ((LastName == null)) {
                 command.Parameters[0].Value = global::System.DBNull.Value;
             }
@@ -1698,8 +1783,78 @@ namespace SEPatRanking.SEPat_DataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, false)]
+        public virtual int UpdateQueryAttendance(global::System.Nullable<short> Attendance, string Original_IDNumber) {
+            global::System.Data.OleDb.OleDbCommand command = this.CommandCollection[5];
+            if ((Attendance.HasValue == true)) {
+                command.Parameters[0].Value = ((short)(Attendance.Value));
+            }
+            else {
+                command.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            if ((Original_IDNumber == null)) {
+                command.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            else {
+                command.Parameters[1].Value = ((string)(Original_IDNumber));
+            }
+            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
+            if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                command.Connection.Open();
+            }
+            int returnValue;
+            try {
+                returnValue = command.ExecuteNonQuery();
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    command.Connection.Close();
+                }
+            }
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, false)]
+        public virtual int UpdateQueryGrade(string Grade, string Original_IDNumber) {
+            global::System.Data.OleDb.OleDbCommand command = this.CommandCollection[6];
+            if ((Grade == null)) {
+                command.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            else {
+                command.Parameters[0].Value = ((string)(Grade));
+            }
+            if ((Original_IDNumber == null)) {
+                command.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            else {
+                command.Parameters[1].Value = ((string)(Original_IDNumber));
+            }
+            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
+            if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                command.Connection.Open();
+            }
+            int returnValue;
+            try {
+                returnValue = command.ExecuteNonQuery();
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    command.Connection.Close();
+                }
+            }
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, false)]
         public virtual int UpdateQueryScore(global::System.Nullable<decimal> Score, string Original_IDNumber) {
-            global::System.Data.OleDb.OleDbCommand command = this.CommandCollection[3];
+            global::System.Data.OleDb.OleDbCommand command = this.CommandCollection[7];
             if ((Score.HasValue == true)) {
                 command.Parameters[0].Value = ((decimal)(Score.Value));
             }

@@ -44,13 +44,13 @@ namespace SEPatRanking
             this.comboBoxGrade.SelectedItem = "9";
             this.toolTip1.SetToolTip(this.buttonMultiSelectAttendance, "Ctrl+Click to select then click to +1 attendance");
             this.toolTip1.SetToolTip(this.labelGPA, "Weighted");
+            this.toolTip1.SetToolTip(this.buttonIncrementGrade, "Add one to grade and remove graduated seniors");
         }
 
         private void buttonAddStudent_Click(object sender, EventArgs e)
         {
             try //attempt to add a new student
             {
-                
                 studentsTableAdapter.Insert(double.Parse(textBoxGPA.Text), textBoxFirstName.Text, textBoxLastName.Text, textBoxIDNumber.Text, comboBoxGrade.Text, 0, short.Parse(textBoxAttendance.Text), short.Parse(textBoxExtracurricular.Text), short.Parse(textBoxServiceHours.Text));
                 MessageBox.Show("New Student entry added!");
             }
@@ -60,7 +60,6 @@ namespace SEPatRanking
             }
             catch //if it fails because there is a duplicate IDNumber, edit the student instead
             {
-                
                 studentsTableAdapter.UpdateQuery(textBoxLastName.Text, textBoxFirstName.Text, decimal.Parse(textBoxGPA.Text), short.Parse(textBoxExtracurricular.Text), short.Parse(textBoxAttendance.Text), comboBoxGrade.Text, short.Parse(textBoxServiceHours.Text), 0, textBoxIDNumber.Text);
             }
             this.studentsTableAdapter.Fill(this.sEPat_DataSet.Students);
@@ -100,6 +99,7 @@ namespace SEPatRanking
         { //Opens a new window with only a dataGridView, but this one can be double clicked to edit
             ViewDatabaseActivity viewDBAct = new ViewDatabaseActivity();
             viewDBAct.ShowDialog();
+            this.studentsTableAdapter.Fill(this.sEPat_DataSet.Students);
         }
 
         private void buttonSearch_Click(object sender, EventArgs e)
@@ -187,25 +187,29 @@ namespace SEPatRanking
             for(int i = 0; i < dataGridView1.SelectedRows.Count; i += 1)
             {
                 string idToChange = dataGridView1.SelectedRows[i].Cells["IDNumber"].Value.ToString();
-                OleDbCommand cmd = new OleDbCommand();
-                cmd.CommandText = "UPDATE Students SET Attendance=" + (int.Parse(dataGridView1.SelectedRows[i].Cells[5].Value.ToString()) + 1) + " WHERE IDNumber=\'" + idToChange + "\';";
-                executeOleDbNonQuery(cmd);          }
-                this.studentsTableAdapter.Fill(this.sEPat_DataSet.Students);
+                int newAttendance = int.Parse(dataGridView1.SelectedRows[i].Cells["Attendance"].Value.ToString()) + 1;
+                studentsTableAdapter.UpdateQueryAttendance(short.Parse(newAttendance.ToString()), idToChange);
+            }
+            this.studentsTableAdapter.Fill(this.sEPat_DataSet.Students);
         }
 
         private void buttonCalculateScores_Click(object sender, EventArgs e)
         { //neec
             //WTJTODO: thread this and have a loading bar window pop up
             CalculatingForm calculatingForm = new CalculatingForm();
-            Thread calculatingThread = new Thread(new ThreadStart(calculatingForm.Show));
-            calculatingThread.Start();
+            calculatingForm.Location = new Point(Cursor.Position.X - 50, Cursor.Position.Y - 20);
+            calculatingForm.Show();
+            /*Thread calculatingThread = new Thread(new ThreadStart(calculatingForm.Show));
+            calculatingThread.SetApartmentState(ApartmentState.STA);
+            calculatingThread.Start();*/
             //first clear all old scores so nothing is double counted WTJTODO
             int numOfStudents = sEPat_DataSet.Tables["Students"].Rows.Count;
-            for (int i = 0; i < numOfStudents; i++)
+            foreach (DataRow row in sEPat_DataSet.Tables["Students"].Rows)
             {
-                sEPat_DataSet.Tables["Students"].Rows[i].SetField<double>("Score", 0);
-
+                studentsTableAdapter.UpdateQueryScore(0, row["IDNumber"].ToString());
             }
+
+
             //creates a sortable list of all students
             //sort and calc percentiles
             string[] scoringColumns = {"Attendance","ExtracurricularPoints","GPA","ServiceHours"};
@@ -215,11 +219,10 @@ namespace SEPatRanking
                 DataView SEPat_DataView = new DataView(SEPat_DataTable);
                 SEPat_DataView.Sort = scoringColumns[i];
 
-                for (int percentile = 50; percentile <= 100; percentile += 10)
+                for (int percentile = 40; percentile < 100; percentile += 10)
                 { //for each percentile level that allots points, add a point
                     //use nearest rank method to calc the rank of a percentile
-                    double rankDecimal = (percentile / 100.0) * numOfStudents;
-                    int rank = int.Parse(Math.Ceiling(rankDecimal).ToString());
+                    int rank = int.Parse(Math.Ceiling((percentile / 100.0) * numOfStudents).ToString());
                     DataTable sortedTable = SEPat_DataView.ToTable();
                     for (int j = rank; j < numOfStudents; j++)
                     {
@@ -231,7 +234,29 @@ namespace SEPatRanking
                 }
             }
             this.studentsTableAdapter.Fill(this.sEPat_DataSet.Students);
-            calculatingThread.Abort();
+            //calculatingThread.Abort();
+            calculatingForm.Close();
+        }
+
+        private void buttonIncrementGrade_Click(object sender, EventArgs e)
+        {
+            //WTJTODO: backup then increment
+            System.IO.File.Copy("SEPat_.accdb", "SEPat_.bak", true);
+            DataTable tempTable = (new DataView(sEPat_DataSet.Tables["Students"])).ToTable();
+            foreach(DataRow row in tempTable.Rows)
+            {
+                string IDNumberOfCurrentStudent = row["IDNumber"].ToString();
+                int oldGrade = int.Parse(studentsTableAdapter.GetGrade(IDNumberOfCurrentStudent).ToString());
+                if(oldGrade == 12)
+                {
+                    studentsTableAdapter.DeleteQuery(IDNumberOfCurrentStudent);
+                }
+                else
+                {
+                    studentsTableAdapter.UpdateQueryGrade((oldGrade + 1).ToString(), IDNumberOfCurrentStudent);
+                }
+            }
+            this.studentsTableAdapter.Fill(this.sEPat_DataSet.Students);
         }
     }
 }
