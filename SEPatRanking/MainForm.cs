@@ -194,26 +194,22 @@ namespace SEPatRanking
         }
 
         private void buttonCalculateScores_Click(object sender, EventArgs e)
-        { //neec
-            //WTJTODO: thread this and have a loading bar window pop up
+        { //reset scores, find percentiles, and calculate new scores
             CalculatingForm calculatingForm = new CalculatingForm();
-            calculatingForm.Location = new Point(Cursor.Position.X - 50, Cursor.Position.Y - 20);
-            calculatingForm.Show();
-            /*Thread calculatingThread = new Thread(new ThreadStart(calculatingForm.Show));
-            calculatingThread.SetApartmentState(ApartmentState.STA);
-            calculatingThread.Start();*/
-            //first clear all old scores so nothing is double counted WTJTODO
+            Thread calculatingFormThread = new Thread(new ThreadStart(calculatingForm.Run));
+            calculatingFormThread.Start(); //show a marquee bar to hold the user over becuase calculations are long
+
             int numOfStudents = sEPat_DataSet.Tables["Students"].Rows.Count;
+            //first clear all old scores so nothing is double counted
             foreach (DataRow row in sEPat_DataSet.Tables["Students"].Rows)
             {
                 studentsTableAdapter.UpdateQueryScore(0, row["IDNumber"].ToString());
             }
 
-
             //creates a sortable list of all students
             //sort and calc percentiles
-            string[] scoringColumns = {"Attendance","ExtracurricularPoints","GPA","ServiceHours"};
-            for(int i = 0; i < scoringColumns.Length; i++)
+            string[] scoringColumns = { "Attendance", "ExtracurricularPoints", "GPA", "ServiceHours" };
+            for (int i = 0; i < scoringColumns.Length; i++)
             { //for each column to be scored, create and sort a DataView for each column contributing to the socre
                 DataTable SEPat_DataTable = sEPat_DataSet.Tables["Students"];
                 DataView SEPat_DataView = new DataView(SEPat_DataTable);
@@ -233,15 +229,14 @@ namespace SEPatRanking
                     }
                 }
             }
+
+            calculatingFormThread.Abort();
             this.studentsTableAdapter.Fill(this.sEPat_DataSet.Students);
-            //calculatingThread.Abort();
-            calculatingForm.Close();
         }
 
         private void buttonIncrementGrade_Click(object sender, EventArgs e)
-        {
-            //WTJTODO: backup then increment
-            System.IO.File.Copy("SEPat_.accdb", "SEPat_.bak", true);
+        { //backs up database, then delete seniors and increments grades
+            System.IO.File.Copy("SEPat_.accdb", "database.backup", true);
             DataTable tempTable = (new DataView(sEPat_DataSet.Tables["Students"])).ToTable();
             foreach(DataRow row in tempTable.Rows)
             {
@@ -258,5 +253,6 @@ namespace SEPatRanking
             }
             this.studentsTableAdapter.Fill(this.sEPat_DataSet.Students);
         }
+
     }
 }

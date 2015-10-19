@@ -37,7 +37,11 @@
             this.IDNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Grade = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ServiceHours = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.GPA = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ExtracurricularPoints = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Attendance = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.studentsBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
+            this.sEPat_DataSet = new SEPatRanking.SEPat_DataSet();
             this.buttonApply = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.buttonSearchNewWindow = new System.Windows.Forms.Button();
@@ -73,16 +77,12 @@
             this.buttonMultiSelectAttendance = new System.Windows.Forms.Button();
             this.buttonCalculateScores = new System.Windows.Forms.Button();
             this.buttonIncrementGrade = new System.Windows.Forms.Button();
-            this.GPA = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Attendance = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.studentsBindingSource2 = new System.Windows.Forms.BindingSource(this.components);
-            this.sEPat_DataSet = new SEPatRanking.SEPat_DataSet();
             this.studentsTableAdapter = new SEPatRanking.SEPat_DataSetTableAdapters.StudentsTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.studentsBindingSource2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sEPat_DataSet)).BeginInit();
+            this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -159,12 +159,38 @@
             this.ServiceHours.ReadOnly = true;
             this.ServiceHours.Width = 80;
             // 
+            // GPA
+            // 
+            this.GPA.DataPropertyName = "GPA";
+            this.GPA.HeaderText = "GPA";
+            this.GPA.Name = "GPA";
+            this.GPA.ReadOnly = true;
+            this.GPA.Width = 60;
+            // 
             // ExtracurricularPoints
             // 
             this.ExtracurricularPoints.DataPropertyName = "ExtracurricularPoints";
             this.ExtracurricularPoints.HeaderText = "ExtracurricularPoints";
             this.ExtracurricularPoints.Name = "ExtracurricularPoints";
             this.ExtracurricularPoints.ReadOnly = true;
+            // 
+            // Attendance
+            // 
+            this.Attendance.DataPropertyName = "Attendance";
+            this.Attendance.HeaderText = "Attendance";
+            this.Attendance.Name = "Attendance";
+            this.Attendance.ReadOnly = true;
+            this.Attendance.Width = 65;
+            // 
+            // studentsBindingSource2
+            // 
+            this.studentsBindingSource2.DataMember = "Students";
+            this.studentsBindingSource2.DataSource = this.sEPat_DataSet;
+            // 
+            // sEPat_DataSet
+            // 
+            this.sEPat_DataSet.DataSetName = "SEPat_DataSet";
+            this.sEPat_DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // buttonApply
             // 
@@ -513,32 +539,6 @@
             this.buttonIncrementGrade.UseVisualStyleBackColor = true;
             this.buttonIncrementGrade.Click += new System.EventHandler(this.buttonIncrementGrade_Click);
             // 
-            // GPA
-            // 
-            this.GPA.DataPropertyName = "GPA";
-            this.GPA.HeaderText = "GPA";
-            this.GPA.Name = "GPA";
-            this.GPA.ReadOnly = true;
-            this.GPA.Width = 60;
-            // 
-            // Attendance
-            // 
-            this.Attendance.DataPropertyName = "Attendance";
-            this.Attendance.HeaderText = "Attendance";
-            this.Attendance.Name = "Attendance";
-            this.Attendance.ReadOnly = true;
-            this.Attendance.Width = 65;
-            // 
-            // studentsBindingSource2
-            // 
-            this.studentsBindingSource2.DataMember = "Students";
-            this.studentsBindingSource2.DataSource = this.sEPat_DataSet;
-            // 
-            // sEPat_DataSet
-            // 
-            this.sEPat_DataSet.DataSetName = "SEPat_DataSet";
-            this.sEPat_DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
             // studentsTableAdapter
             // 
             this.studentsTableAdapter.ClearBeforeFill = true;
@@ -565,12 +565,12 @@
             this.Text = "Science and Engineering Pathway Student Database";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.studentsBindingSource2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sEPat_DataSet)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.studentsBindingSource2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sEPat_DataSet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

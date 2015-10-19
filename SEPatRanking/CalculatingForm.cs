@@ -17,5 +17,10 @@ namespace SEPatRanking
         {
             InitializeComponent();
         }
+
+        internal void Run()
+        { //created so I can ShowDialog in a thread, as ThreadStart requires void return
+            this.ShowDialog();
+        }
     }
 }

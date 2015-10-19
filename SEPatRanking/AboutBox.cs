@@ -121,7 +121,7 @@ namespace SEPatRanking
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //WTJTODO: open an HTML help file
+            System.Diagnostics.Process.Start("Help.html");
         }
     }
 }
